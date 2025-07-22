@@ -25,14 +25,13 @@
 
 ## 🚀 快速開始
 
-### 安裝依賴
-```bash
-npm install
-```
+### 🌐 線上使用
+直接訪問：https://atlantishikari.github.io/marquee-tool/
 
-### 開發模式
+### 本地開發
 ```bash
-npm run dev
+npm install     # 安裝依賴
+npm run dev     # 啟動開發服務器
 ```
 訪問 http://localhost:5173
 
