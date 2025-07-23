@@ -183,15 +183,15 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
 
       {/* 進階顏色選擇器浮動視窗 */}
       {isAdvancedOpen && (
-        <>
+        <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4">
           {/* 背景遮罩 */}
           <div 
-            className="fixed inset-0 z-[9998] bg-black/70" 
+            className="absolute inset-0 bg-black bg-opacity-80" 
             onClick={() => setIsAdvancedOpen(false)}
           />
           
           {/* 進階選擇器視窗 */}
-          <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[9999] bg-white rounded-xl shadow-2xl border-2 border-gray-300 w-[95vw] max-w-lg min-h-[70vh] max-h-[85vh] overflow-hidden flex flex-col">
+          <div className="relative bg-white rounded-2xl shadow-2xl border-4 border-gray-400 w-full max-w-2xl h-[80vh] flex flex-col" style={{ backgroundColor: '#ffffff' }}>
             
             {/* 標題欄 */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gray-50">
@@ -247,29 +247,27 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
                 // 格線顏色選擇器 - 重新設計
                 <div className="space-y-4">
                   {/* 主要色彩格線 - 使用固定顏色陣列 */}
-                  <div className="grid grid-cols-6 gap-3">
+                  <div className="grid grid-cols-4 gap-4">
                     {[
                       // 第一排 - 基本色
-                      '#FFFFFF', '#CCCCCC', '#999999', '#666666', '#333333', '#000000',
+                      '#FFFFFF', '#CCCCCC', '#666666', '#000000',
                       // 第二排 - 主要色
-                      '#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF',
-                      // 第三排 - 紅色系
-                      '#FFB3B3', '#FF8080', '#FF4D4D', '#FF1A1A', '#E60000', '#B30000',
-                      // 第四排 - 橙色系
-                      '#FFD1A3', '#FFBB7A', '#FFA652', '#FF9029', '#E6751A', '#CC5A0A',
-                      // 第五排 - 黃色系
-                      '#FFFF99', '#FFFF66', '#FFFF33', '#E6E600', '#CCCC00', '#999900',
-                      // 第六排 - 綠色系
-                      '#B3FFB3', '#80FF80', '#4DFF4D', '#1AFF1A', '#00E600', '#00B300',
-                      // 第七排 - 藍色系
-                      '#B3D9FF', '#80C0FF', '#4DA6FF', '#1A8CFF', '#0073E6', '#005AB3',
-                      // 第八排 - 紫色系
-                      '#E0B3FF', '#D180FF', '#C14DFF', '#B21AFF', '#9900E6', '#7700B3'
+                      '#FF0000', '#00FF00', '#0000FF', '#FFFF00',
+                      // 第三排 - 次要色
+                      '#FF00FF', '#00FFFF', '#FF8000', '#8000FF',
+                      // 第四排 - 紅色系
+                      '#FF8080', '#FF4D4D', '#E60000', '#B30000',
+                      // 第五排 - 綠色系
+                      '#80FF80', '#4DFF4D', '#00E600', '#00B300',
+                      // 第六排 - 藍色系
+                      '#80C0FF', '#4DA6FF', '#0073E6', '#005AB3',
+                      // 第七排 - 其他色
+                      '#FFB366', '#FFFF66', '#B3FFB3', '#D180FF'
                     ].map((color, i) => (
                       <button
                         key={i}
                         onClick={() => handleAdvancedColorSelect(color)}
-                        className="w-12 h-12 border border-gray-300 hover:border-gray-500 hover:scale-105 transition-all rounded-lg shadow-sm"
+                        className="w-20 h-20 border-2 border-gray-400 hover:border-gray-600 hover:scale-105 transition-all rounded-xl shadow-lg"
                         style={{ backgroundColor: color }}
                         title={color}
                       />
@@ -296,26 +294,26 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
                 <div className="space-y-6">
                   {/* 主色彩區域 - 大型可點擊區域 */}
                   <div 
-                    className="w-full h-64 relative rounded-xl overflow-hidden border-2 border-gray-300 cursor-crosshair shadow-lg"
+                    className="w-full h-80 relative rounded-xl overflow-hidden border-4 border-gray-500 cursor-crosshair shadow-2xl"
                     style={{
                       background: `
                         linear-gradient(to bottom, 
-                          rgba(255,255,255,1) 0%, 
-                          rgba(255,255,255,0.7) 25%, 
-                          rgba(255,255,255,0) 50%, 
-                          rgba(0,0,0,0) 50%, 
-                          rgba(0,0,0,0.7) 75%, 
-                          rgba(0,0,0,1) 100%
+                          #FFFFFF 0%, 
+                          rgba(255,255,255,0.8) 20%, 
+                          rgba(255,255,255,0) 40%, 
+                          rgba(0,0,0,0) 60%, 
+                          rgba(0,0,0,0.8) 80%, 
+                          #000000 100%
                         ), 
                         linear-gradient(to right, 
                           #FF0000 0%, 
-                          #FF8000 14%, 
-                          #FFFF00 28%, 
-                          #80FF00 42%, 
-                          #00FF00 56%, 
-                          #00FF80 70%, 
-                          #00FFFF 84%, 
-                          #0080FF 100%
+                          #FF8000 16%, 
+                          #FFFF00 32%, 
+                          #80FF00 48%, 
+                          #00FF00 64%, 
+                          #00FFFF 80%, 
+                          #0000FF 96%, 
+                          #8000FF 100%
                         )
                       `
                     }}
@@ -337,10 +335,10 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
                   </div>
 
                   {/* 色相滑桿 */}
-                  <div className="space-y-3">
-                    <span className="text-lg font-medium text-gray-700">色相</span>
+                  <div className="space-y-4">
+                    <span className="text-xl font-bold text-gray-800">色相選擇</span>
                     <div 
-                      className="relative h-12 rounded-xl overflow-hidden border border-gray-300 cursor-pointer shadow-sm"
+                      className="relative h-16 rounded-xl overflow-hidden border-4 border-gray-500 cursor-pointer shadow-xl"
                       style={{
                         background: `linear-gradient(to right, 
                           #FF0000 0%, #FF8000 14%, #FFFF00 28%, #80FF00 42%, 
@@ -355,21 +353,21 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
                         handleAdvancedColorSelect(color);
                       }}
                     >
-                      <div className="absolute top-1 left-1/2 w-10 h-10 bg-white border-2 border-gray-400 rounded-full shadow-lg cursor-pointer transform -translate-x-1/2"></div>
+                      <div className="absolute top-1 left-1/2 w-14 h-14 bg-white border-4 border-gray-600 rounded-full shadow-2xl cursor-pointer transform -translate-x-1/2"></div>
                     </div>
                   </div>
 
                   {/* 不透明度滑桿 */}
-                  <div className="space-y-3">
-                    <span className="text-lg font-medium text-gray-700">不透明度</span>
-                    <div className="relative h-12 bg-gray-200 rounded-xl overflow-hidden border border-gray-300 shadow-sm">
+                  <div className="space-y-4">
+                    <span className="text-xl font-bold text-gray-800">不透明度</span>
+                    <div className="relative h-16 bg-gray-300 rounded-xl overflow-hidden border-4 border-gray-500 shadow-xl">
                       <div 
                         className="h-full bg-gradient-to-r from-transparent to-current rounded-xl" 
                         style={{ color: value }}
                       ></div>
-                      <div className="absolute right-1 top-1 w-10 h-10 bg-white border-2 border-gray-400 rounded-full shadow-lg cursor-pointer"></div>
+                      <div className="absolute right-1 top-1 w-14 h-14 bg-white border-4 border-gray-600 rounded-full shadow-2xl cursor-pointer"></div>
                     </div>
-                    <div className="text-right text-lg text-gray-600 font-medium">100%</div>
+                    <div className="text-right text-xl text-gray-700 font-bold">100%</div>
                   </div>
                 </div>
               )}
@@ -395,17 +393,19 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
                       <span className="text-lg font-medium text-gray-700">紅色 (R)</span>
                       <span className="text-lg text-gray-600 font-mono bg-gray-100 px-3 py-1 rounded">255</span>
                     </div>
-                    <div className="relative h-12 bg-gray-200 rounded-xl overflow-hidden border border-gray-300 shadow-sm">
+                    <div className="relative h-16 bg-gray-200 rounded-xl overflow-hidden border-4 border-gray-500 shadow-xl">
                       <div 
                         className="w-full h-full rounded-xl"
                         style={{
                           background: `linear-gradient(to right, 
-                            rgba(0,0,0,1) 0%, 
-                            rgba(255,0,0,0.5) 50%, 
-                            rgba(255,0,0,1) 100%)`
+                            #000000 0%, 
+                            #800000 25%, 
+                            #ff0000 50%, 
+                            #ff8080 75%, 
+                            #ffffff 100%)`
                         }}
                       ></div>
-                      <div className="absolute right-1 top-1 w-10 h-10 bg-white border-2 border-gray-400 rounded-full shadow-lg cursor-pointer"></div>
+                      <div className="absolute right-1 top-1 w-14 h-14 bg-white border-4 border-gray-600 rounded-full shadow-2xl cursor-pointer"></div>
                     </div>
                   </div>
 
@@ -415,17 +415,19 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
                       <span className="text-lg font-medium text-gray-700">綠色 (G)</span>
                       <span className="text-lg text-gray-600 font-mono bg-gray-100 px-3 py-1 rounded">77</span>
                     </div>
-                    <div className="relative h-12 bg-gray-200 rounded-xl overflow-hidden border border-gray-300 shadow-sm">
+                    <div className="relative h-16 bg-gray-200 rounded-xl overflow-hidden border-4 border-gray-500 shadow-xl">
                       <div 
                         className="w-full h-full rounded-xl"
                         style={{
                           background: `linear-gradient(to right, 
-                            rgba(0,0,0,1) 0%, 
-                            rgba(0,255,0,0.5) 50%, 
-                            rgba(0,255,0,1) 100%)`
+                            #000000 0%, 
+                            #008000 25%, 
+                            #00ff00 50%, 
+                            #80ff80 75%, 
+                            #ffffff 100%)`
                         }}
                       ></div>
-                      <div className="absolute left-8 top-1 w-10 h-10 bg-white border-2 border-gray-400 rounded-full shadow-lg cursor-pointer"></div>
+                      <div className="absolute left-8 top-1 w-14 h-14 bg-white border-4 border-gray-600 rounded-full shadow-2xl cursor-pointer"></div>
                     </div>
                   </div>
 
@@ -435,17 +437,19 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
                       <span className="text-lg font-medium text-gray-700">藍色 (B)</span>
                       <span className="text-lg text-gray-600 font-mono bg-gray-100 px-3 py-1 rounded">61</span>
                     </div>
-                    <div className="relative h-12 bg-gray-200 rounded-xl overflow-hidden border border-gray-300 shadow-sm">
+                    <div className="relative h-16 bg-gray-200 rounded-xl overflow-hidden border-4 border-gray-500 shadow-xl">
                       <div 
                         className="w-full h-full rounded-xl"
                         style={{
                           background: `linear-gradient(to right, 
-                            rgba(0,0,0,1) 0%, 
-                            rgba(0,0,255,0.5) 50%, 
-                            rgba(0,0,255,1) 100%)`
+                            #000000 0%, 
+                            #000080 25%, 
+                            #0000ff 50%, 
+                            #8080ff 75%, 
+                            #ffffff 100%)`
                         }}
                       ></div>
-                      <div className="absolute left-16 top-1 w-10 h-10 bg-white border-2 border-gray-400 rounded-full shadow-lg cursor-pointer"></div>
+                      <div className="absolute left-16 top-1 w-14 h-14 bg-white border-4 border-gray-600 rounded-full shadow-2xl cursor-pointer"></div>
                     </div>
                   </div>
 
@@ -478,12 +482,12 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
                       <span className="text-lg font-medium text-gray-700">不透明度</span>
                       <span className="text-lg text-gray-600 font-mono bg-gray-100 px-3 py-1 rounded">100%</span>
                     </div>
-                    <div className="relative h-12 bg-gray-200 rounded-xl overflow-hidden border border-gray-300 shadow-sm">
+                    <div className="relative h-16 bg-gray-200 rounded-xl overflow-hidden border-4 border-gray-500 shadow-xl">
                       <div 
                         className="h-full bg-gradient-to-r from-transparent to-current rounded-xl" 
                         style={{ color: value }}
                       ></div>
-                      <div className="absolute right-1 top-1 w-10 h-10 bg-white border-2 border-gray-400 rounded-full shadow-lg cursor-pointer"></div>
+                      <div className="absolute right-1 top-1 w-14 h-14 bg-white border-4 border-gray-600 rounded-full shadow-2xl cursor-pointer"></div>
                     </div>
                   </div>
                 </div>
@@ -514,7 +518,7 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
               </div>
             </div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );
