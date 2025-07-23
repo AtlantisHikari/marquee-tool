@@ -334,10 +334,10 @@ export const SettingsPage: React.FC = () => {
 
               {/* 滾動方向 */}
               <div>
-                <label className="block font-medium text-gray-700 mb-3" style={{ fontSize: '20px' }}>
+                <label className="block font-medium text-gray-700 mb-4" style={{ fontSize: '20px' }}>
                   滾動方向
                 </label>
-                <div className="grid grid-cols-4 gap-3">
+                <div className="flex flex-wrap gap-4 justify-center">
                   {directionOptions.map((option) => {
                     const Icon = option.icon;
                     return (
@@ -345,14 +345,23 @@ export const SettingsPage: React.FC = () => {
                         key={option.value}
                         onClick={() => handleDirectionChange(option.value)}
                         className={cn(
-                          'p-4 rounded-lg border-2 transition-all flex flex-col items-center justify-center gap-2 font-medium text-base',
+                          'relative px-6 py-4 rounded-xl shadow-md transition-all duration-200 flex flex-col items-center justify-center gap-2 font-medium text-base min-w-[120px]',
+                          'active:scale-95 active:shadow-sm transform',
                           marqueeItem.config.direction === option.value
-                            ? 'bg-blue-50 border-blue-500 text-blue-700'
-                            : 'bg-white border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50'
+                            ? 'bg-gradient-to-b from-blue-500 to-blue-600 text-white shadow-blue-200 ring-2 ring-blue-300'
+                            : 'bg-gradient-to-b from-white to-gray-50 text-gray-700 border border-gray-200 hover:from-gray-50 hover:to-gray-100 hover:shadow-lg hover:border-gray-300'
                         )}
+                        style={{
+                          boxShadow: marqueeItem.config.direction === option.value 
+                            ? '0 4px 12px rgba(59, 130, 246, 0.3), 0 2px 4px rgba(59, 130, 246, 0.1)' 
+                            : '0 2px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05)'
+                        }}
                       >
-                        <Icon className="w-6 h-6" />
-                        <span className="text-sm">{option.label}</span>
+                        <Icon className="w-7 h-7" />
+                        <span className="text-sm font-semibold">{option.label}</span>
+                        
+                        {/* 按鈕光澤效果 */}
+                        <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-transparent via-transparent to-white/20 pointer-events-none" />
                       </button>
                     );
                   })}

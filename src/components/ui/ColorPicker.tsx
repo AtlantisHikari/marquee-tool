@@ -79,8 +79,8 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
 
             {/* 內容區域 */}
             <div className="p-6">
-              {/* 常用顏色網格 - 4x8矩形色塊 */}
-              <div className="grid grid-cols-8 gap-3">
+              {/* 常用顏色網格 - 7x8矩形色塊 */}
+              <div className="grid grid-cols-8 gap-2">
                 {COMMON_COLORS.map((color) => (
                   <button
                     key={color}
@@ -93,8 +93,8 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
                     )}
                     style={{ 
                       backgroundColor: color, 
-                      width: '40px', 
-                      height: '40px' // 正方形比例
+                      width: '36px', 
+                      height: '36px' // 稍微縮小以容納更多顏色
                     }}
                     title={color}
                   >
