@@ -48,8 +48,8 @@ export const COMMON_COLORS = [
   '#9ACD32', // Yellow Green
   '#00FF00', // Green
   '#008B8B', // Blue Green
-  '#0000FF', // Blue
-  '#8A2BE2', // Blue Violet
-  '#9400D3', // Violet
-  '#DC143C', // Red Violet
+  '#87CEEB', // 淺藍色 (Sky Blue)
+  '#00BFFF', // 天藍色 (Deep Sky Blue)
+  '#0000CD', // 深藍色 (Medium Blue)
+  '#8A2BE2', // 紫色 (Blue Violet)
 ];
