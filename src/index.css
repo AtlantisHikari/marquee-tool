@@ -20,15 +20,54 @@ body {
   overflow: hidden;
   white-space: nowrap;
   position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .marquee-content {
   display: inline-block;
   animation: marquee var(--duration, 15s) linear infinite;
+  will-change: transform;
 }
 
 .marquee-content.paused {
   animation-play-state: paused;
+}
+
+/* 確保全屏顯示正確 */
+.marquee-fullscreen,
+.marquee-fullscreen * {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+}
+
+/* 響應式字體大小 */
+@media (max-width: 640px) {  /* 手機 */
+  .marquee-content {
+    font-size: clamp(14px, 4vw, 60px) !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {  /* 平板 */
+  .marquee-content {
+    font-size: clamp(20px, 6vw, 80px) !important;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1920px) {  /* 桌機 */
+  .marquee-content {
+    font-size: clamp(24px, 8vw, 120px) !important;
+  }
+}
+
+@media (min-width: 1921px) {  /* 大螢幕/電視 */
+  .marquee-content {
+    font-size: clamp(32px, 10vw, 200px) !important;
+  }
 }
 
 @keyframes marquee {

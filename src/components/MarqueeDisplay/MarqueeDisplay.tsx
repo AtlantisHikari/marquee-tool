@@ -64,10 +64,16 @@ export const MarqueeDisplay: React.FC<MarqueeDisplayProps> = ({
       ref={containerRef}
       className={cn(
         getContainerClass(),
-        'h-full w-full',
+        'h-full w-full min-h-full min-w-full',
         className
       )}
-      style={containerStyles}
+      style={{
+        ...containerStyles,
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: config.direction === 'up' || config.direction === 'down' ? 'center' : 'flex-start',
+      }}
     >
       <div
         ref={contentRef}
@@ -78,7 +84,11 @@ export const MarqueeDisplay: React.FC<MarqueeDisplayProps> = ({
             ? 'whitespace-pre-line text-center' 
             : 'whitespace-nowrap'
         )}
-        style={textStyles}
+        style={{
+          ...textStyles,
+          minWidth: config.direction === 'left' || config.direction === 'right' ? '100%' : 'auto',
+          minHeight: config.direction === 'up' || config.direction === 'down' ? '100%' : 'auto',
+        }}
       >
         {config.text || '請輸入跑馬燈文字...'}
       </div>
