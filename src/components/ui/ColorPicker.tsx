@@ -186,12 +186,12 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
         <>
           {/* 背景遮罩 */}
           <div 
-            className="fixed inset-0 z-50 bg-black/50" 
+            className="fixed inset-0 z-[9998] bg-black/70" 
             onClick={() => setIsAdvancedOpen(false)}
           />
           
           {/* 進階選擇器視窗 */}
-          <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-white rounded-xl shadow-2xl border border-gray-200 w-[95vw] max-w-lg min-h-[70vh] max-h-[85vh] overflow-hidden flex flex-col">
+          <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[9999] bg-white rounded-xl shadow-2xl border-2 border-gray-300 w-[95vw] max-w-lg min-h-[70vh] max-h-[85vh] overflow-hidden flex flex-col">
             
             {/* 標題欄 */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gray-50">
