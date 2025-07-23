@@ -230,8 +230,8 @@ export const SettingsPage: React.FC = () => {
                   value={marqueeItem.config.text}
                   onChange={(e) => handleConfigChange({ text: e.target.value })}
                   rows={4}
-                  className="w-full px-4 py-4 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 box-border"
-                  style={{ fontSize: '20px', maxWidth: '100%' }}
+                  className="w-full px-4 py-4 border border-gray-300 rounded-lg resize-y focus:ring-2 focus:ring-blue-500 focus:border-blue-500 box-border overflow-y-auto"
+                  style={{ fontSize: '20px', maxWidth: '100%', minHeight: '120px', maxHeight: '300px' }}
                   placeholder="輸入要顯示的文字..."
                 />
               </div>
@@ -301,11 +301,11 @@ export const SettingsPage: React.FC = () => {
             
             <div className="space-y-6">
               {/* 滾動速度 */}
-              <div className="max-w-full">
+              <div className="w-full overflow-hidden">
                 <label className="block font-medium text-gray-700 mb-3" style={{ fontSize: '20px' }}>
                   滾動速度: {marqueeItem.config.speed}
                 </label>
-                <div className="px-4 w-full max-w-full">
+                <div className="px-6 w-full">
                   <input
                     type="range"
                     min="1"
@@ -315,11 +315,11 @@ export const SettingsPage: React.FC = () => {
                     className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
                   />
                 </div>
-                <div className="flex justify-between text-sm text-gray-500 mt-2 px-4">
+                <div className="flex justify-between text-sm text-gray-500 mt-2 px-6">
                   <span>慢</span>
                   <span>快</span>
                 </div>
-                <div className="mt-2 px-4">
+                <div className="mt-2 px-6">
                   <input
                     type="number"
                     min="1"
@@ -337,7 +337,7 @@ export const SettingsPage: React.FC = () => {
                 <label className="block font-medium text-gray-700 mb-4" style={{ fontSize: '20px' }}>
                   滾動方向
                 </label>
-                <div className="flex flex-wrap gap-4 justify-center">
+                <div className="grid grid-cols-4 gap-3">
                   {directionOptions.map((option) => {
                     const Icon = option.icon;
                     return (
@@ -345,7 +345,7 @@ export const SettingsPage: React.FC = () => {
                         key={option.value}
                         onClick={() => handleDirectionChange(option.value)}
                         className={cn(
-                          'relative px-6 py-4 rounded-xl shadow-md transition-all duration-200 flex flex-col items-center justify-center gap-2 font-medium text-base min-w-[120px]',
+                          'relative px-3 py-4 rounded-xl shadow-md transition-all duration-200 flex flex-col items-center justify-center gap-2 font-medium text-base',
                           'active:scale-95 active:shadow-sm transform',
                           marqueeItem.config.direction === option.value
                             ? 'bg-gradient-to-b from-blue-500 to-blue-600 text-white shadow-blue-200 ring-2 ring-blue-300'
@@ -357,8 +357,8 @@ export const SettingsPage: React.FC = () => {
                             : '0 2px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05)'
                         }}
                       >
-                        <Icon className="w-7 h-7" />
-                        <span className="text-sm font-semibold">{option.label}</span>
+                        <Icon className="w-6 h-6" />
+                        <span className="text-xs font-semibold">{option.label}</span>
                         
                         {/* 按鈕光澤效果 */}
                         <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-transparent via-transparent to-white/20 pointer-events-none" />
@@ -378,6 +378,48 @@ export const SettingsPage: React.FC = () => {
             </h2>
             
             <div className="space-y-6">
+              {/* 字形變化 */}
+              <div>
+                <label className="block font-medium text-gray-700 mb-4" style={{ fontSize: '20px' }}>
+                  字形變化
+                </label>
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => handleConfigChange({ fontWeight: 'normal', fontStyle: 'normal' })}
+                    className={cn(
+                      'flex-1 px-4 py-3 rounded-lg border-2 transition-all text-base font-medium',
+                      marqueeItem.config.fontWeight === 'normal' && marqueeItem.config.fontStyle === 'normal'
+                        ? 'bg-blue-50 border-blue-500 text-blue-700'
+                        : 'bg-white border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50'
+                    )}
+                  >
+                    預設
+                  </button>
+                  <button
+                    onClick={() => handleConfigChange({ fontWeight: 'bold' })}
+                    className={cn(
+                      'flex-1 px-4 py-3 rounded-lg border-2 transition-all text-base font-bold',
+                      marqueeItem.config.fontWeight === 'bold'
+                        ? 'bg-blue-50 border-blue-500 text-blue-700'
+                        : 'bg-white border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50'
+                    )}
+                  >
+                    粗體
+                  </button>
+                  <button
+                    onClick={() => handleConfigChange({ fontStyle: 'italic' })}
+                    className={cn(
+                      'flex-1 px-4 py-3 rounded-lg border-2 transition-all text-base font-medium italic',
+                      marqueeItem.config.fontStyle === 'italic'
+                        ? 'bg-blue-50 border-blue-500 text-blue-700'
+                        : 'bg-white border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50'
+                    )}
+                  >
+                    斜體
+                  </button>
+                </div>
+              </div>
+
               {/* 字體系列 */}
               <div>
                 <label className="block font-medium text-gray-700 mb-2" style={{ fontSize: '20px' }}>
@@ -390,14 +432,12 @@ export const SettingsPage: React.FC = () => {
                   style={{ fontSize: '20px' }}
                 >
                   <option value="system-ui, sans-serif">系統預設</option>
-                  <option value="'Noto Sans TC', sans-serif">Noto Sans TC (繁體中文)</option>
-                  <option value="'Noto Sans', sans-serif">Noto Sans</option>
-                  <option value="'Noto Sans TC', 'Noto Sans', sans-serif">Noto Sans TC + Noto Sans</option>
+                  <option value="'Noto Sans TC', sans-serif">Noto Sans TC</option>
                   <option value="'Helvetica Neue', Arial, sans-serif">Helvetica</option>
                   <option value="'Times New Roman', serif">Times New Roman</option>
                   <option value="'Courier New', monospace">Courier New</option>
-                  <option value="'Georgia', serif">Georgia</option>
-                  <option value="'Verdana', sans-serif">Verdana</option>
+                  <option value="'Optima', sans-serif">Optima</option>
+                  <option value="'Futura', sans-serif">Futura</option>
                 </select>
               </div>
             </div>

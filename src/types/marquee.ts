@@ -7,6 +7,8 @@ export interface MarqueeConfig {
   direction: 'left' | 'right' | 'up' | 'down';
   isPlaying: boolean;
   fontFamily: string;
+  fontWeight: 'normal' | 'bold';
+  fontStyle: 'normal' | 'italic';
   hasTextShadow: boolean;
   hasBorder: boolean;
   borderColor: string;
@@ -52,7 +54,7 @@ export const COMMON_COLORS = [
   '#E6F3FF', '#87CEEB', '#00BFFF', '#1E90FF', '#0066CC', '#003399', '#191970', '#000080',
   
   // 第六排 - 粉綠逐漸轉青綠再轉亮綠再轉深綠再轉墨綠
-  '#E6FFE6', '#90EE90', '#00FF7F', '#00FF00', '#32CD32', '#228B22', '#006400', '#013220',
+  '#E6FFE6', '#90EE90', '#20B2AA', '#00FF00', '#32CD32', '#228B22', '#006400', '#013220',
   
   // 第七排 - 粉紫轉葡萄紫轉亮紫轉深紫
   '#F0E6FF', '#DDA0DD', '#BA55D3', '#9932CC', '#8A2BE2', '#663399', '#4B0082', '#2E004B'

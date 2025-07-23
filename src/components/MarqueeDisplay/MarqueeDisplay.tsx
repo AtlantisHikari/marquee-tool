@@ -40,6 +40,8 @@ export const MarqueeDisplay: React.FC<MarqueeDisplayProps> = ({
     fontSize: `${config.fontSize}px`,
     color: config.textColor,
     fontFamily: config.fontFamily,
+    fontWeight: config.fontWeight || 'normal',
+    fontStyle: config.fontStyle || 'normal',
     textShadow: config.hasTextShadow ? '2px 2px 4px rgba(0,0,0,0.5)' : 'none',
     border: config.hasBorder ? `2px solid ${config.borderColor}` : 'none',
     padding: config.hasBorder ? '8px 16px' : '0',
@@ -66,6 +68,8 @@ export const MarqueeDisplay: React.FC<MarqueeDisplayProps> = ({
       contentRef.current.style.fontSize = `${config.fontSize}px`;
       contentRef.current.style.color = config.textColor;
       contentRef.current.style.fontFamily = config.fontFamily;
+      contentRef.current.style.fontWeight = config.fontWeight || 'normal';
+      contentRef.current.style.fontStyle = config.fontStyle || 'normal';
       contentRef.current.style.textShadow = config.hasTextShadow ? '2px 2px 4px rgba(0,0,0,0.5)' : 'none';
       contentRef.current.style.border = config.hasBorder ? `2px solid ${config.borderColor}` : 'none';
     }

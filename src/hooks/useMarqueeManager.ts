@@ -10,6 +10,8 @@ const DEFAULT_CONFIG: MarqueeConfig = {
   direction: 'left',
   isPlaying: true,
   fontFamily: 'system-ui, sans-serif',
+  fontWeight: 'normal',
+  fontStyle: 'normal',
   hasTextShadow: false,
   hasBorder: false,
   borderColor: '#000000',
