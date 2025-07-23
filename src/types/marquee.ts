@@ -34,22 +34,17 @@ export interface ColorPalette {
   colors: string[];
 }
 
-// 常用顏色預設 - 按指定順序排列
+// 常用顏色預設 - 4x8 (32色) 按指定順序排列
 export const COMMON_COLORS = [
-  '#FFFFFF', // White
-  '#808080', // Grey
-  '#000000', // Black
-  '#FFB6C1', // Pink
-  '#FF0000', // Red
-  '#FF4500', // Red Orange
-  '#FF8C00', // Orange
-  '#FFD700', // Yellow Orange
-  '#FFFF00', // Yellow
-  '#9ACD32', // Yellow Green
-  '#00FF00', // Green
-  '#008B8B', // Blue Green
-  '#87CEEB', // 淺藍色 (Sky Blue)
-  '#00BFFF', // 天藍色 (Deep Sky Blue)
-  '#0000CD', // 深藍色 (Medium Blue)
-  '#8A2BE2', // 紫色 (Blue Violet)
+  // 第一排 - 白色系到灰色系
+  '#FFFFFF', '#F5F5F5', '#E0E0E0', '#CCCCCC', '#999999', '#808080', '#666666', '#000000',
+  
+  // 第二排 - 紅色系
+  '#FFE4E6', '#FFB6C1', '#FF8A8A', '#FF0000', '#DC143C', '#B22222', '#8B0000', '#330000',
+  
+  // 第三排 - 橙黃色系  
+  '#FFF8DC', '#FFE4B5', '#FFD700', '#FF8C00', '#FF4500', '#FF6347', '#E6A800', '#B8860B',
+  
+  // 第四排 - 綠色系
+  '#F0FFF0', '#9ACD32', '#7CFC00', '#00FF00', '#32CD32', '#228B22', '#006400', '#013220'
 ];
