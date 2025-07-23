@@ -90,7 +90,7 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
               <button
                 onClick={() => setActiveTab('common')}
                 className={cn(
-                  'flex-1 px-4 py-4 text-lg font-medium transition-colors',
+                  'flex-1 px-4 py-4 text-xl font-medium transition-colors',
                   activeTab === 'common'
                     ? 'bg-blue-100 text-blue-700 border-b-2 border-blue-600'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
@@ -101,7 +101,7 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
               <button
                 onClick={() => setActiveTab('custom')}
                 className={cn(
-                  'flex-1 px-4 py-4 text-lg font-medium transition-colors',
+                  'flex-1 px-4 py-4 text-xl font-medium transition-colors',
                   activeTab === 'custom'
                     ? 'bg-blue-100 text-blue-700 border-b-2 border-blue-600'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
@@ -121,7 +121,7 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
                       key={color}
                       onClick={() => handleColorSelect(color)}
                       className={cn(
-                        "rounded-lg border-2 transition-all hover:scale-105 relative",
+                        "rounded-lg border transition-all hover:scale-105 relative",
                         value.toLowerCase() === color.toLowerCase()
                           ? "border-blue-500 shadow-lg ring-2 ring-blue-200"
                           : "border-gray-300 hover:border-gray-400"
@@ -244,151 +244,179 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
             {/* 內容區域 */}
             <div className="p-4 max-h-96 overflow-y-auto">
               {advancedTab === 'grid' && (
-                // 格線顏色選擇器
+                // 格線顏色選擇器 - 重新設計
                 <div className="space-y-4">
-                  {/* 色彩格線 */}
-                  <div className="grid grid-cols-12 gap-1">
-                    {Array.from({ length: 144 }, (_, i) => {
-                      const hue = (i % 12) * 30;
-                      const lightness = 90 - Math.floor(i / 12) * 7.5;
-                      const color = `hsl(${hue}, 80%, ${lightness}%)`;
-                      return (
-                        <button
-                          key={i}
-                          onClick={() => handleAdvancedColorSelect(color)}
-                          className="w-6 h-6 border border-gray-200 hover:border-gray-400 transition-colors"
-                          style={{ backgroundColor: color }}
-                          title={color}
-                        />
-                      );
-                    })}
-                  </div>
-                  
-                  {/* 灰階 */}
-                  <div className="grid grid-cols-12 gap-1 mt-2">
-                    {Array.from({ length: 12 }, (_, i) => {
-                      const gray = Math.round((i / 11) * 255);
-                      const color = `rgb(${gray}, ${gray}, ${gray})`;
-                      return (
-                        <button
-                          key={i}
-                          onClick={() => handleAdvancedColorSelect(`#${gray.toString(16).padStart(2, '0').repeat(3)}`)}
-                          className="w-6 h-6 border border-gray-200 hover:border-gray-400 transition-colors"
-                          style={{ backgroundColor: color }}
-                          title={color}
-                        />
-                      );
-                    })}
+                  {/* 主要色彩格線 - 使用固定顏色陣列 */}
+                  <div className="grid grid-cols-8 gap-2">
+                    {[
+                      // 第一排 - 基本色
+                      '#FFFFFF', '#CCCCCC', '#999999', '#666666', '#333333', '#000000', '#FF0000', '#00FF00',
+                      // 第二排 - 暖色系
+                      '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF', '#FF8000', '#FF4000', '#FF6000', '#FFA000',
+                      // 第三排 - 紅色系
+                      '#FFE6E6', '#FFB3B3', '#FF8080', '#FF4D4D', '#FF1A1A', '#E60000', '#B30000', '#800000',
+                      // 第四排 - 橙色系
+                      '#FFE6CC', '#FFD1A3', '#FFBB7A', '#FFA652', '#FF9029', '#E6751A', '#CC5A0A', '#B34700',
+                      // 第五排 - 黃色系
+                      '#FFFFCC', '#FFFF99', '#FFFF66', '#FFFF33', '#FFFF00', '#E6E600', '#CCCC00', '#999900',
+                      // 第六排 - 綠色系
+                      '#E6FFE6', '#B3FFB3', '#80FF80', '#4DFF4D', '#1AFF1A', '#00E600', '#00B300', '#008000',
+                      // 第七排 - 藍色系
+                      '#E6F2FF', '#B3D9FF', '#80C0FF', '#4DA6FF', '#1A8CFF', '#0073E6', '#005AB3', '#004080',
+                      // 第八排 - 紫色系
+                      '#F2E6FF', '#E0B3FF', '#D180FF', '#C14DFF', '#B21AFF', '#9900E6', '#7700B3', '#550080'
+                    ].map((color, i) => (
+                      <button
+                        key={i}
+                        onClick={() => handleAdvancedColorSelect(color)}
+                        className="w-8 h-8 border border-gray-300 hover:border-gray-500 hover:scale-110 transition-all rounded"
+                        style={{ backgroundColor: color }}
+                        title={color}
+                      />
+                    ))}
                   </div>
 
                   {/* 不透明度滑桿 */}
-                  <div className="space-y-2 mt-4">
-                    <span className="text-sm font-medium text-gray-600">不透明度</span>
-                    <div className="relative">
-                      <div className="w-full h-6 bg-gradient-to-r from-transparent to-current rounded" 
-                           style={{ color: value }}></div>
-                      <div className="absolute right-0 top-0 w-6 h-6 bg-white border-2 border-gray-300 rounded-full"></div>
+                  <div className="space-y-3 mt-6">
+                    <span className="text-base font-medium text-gray-700">不透明度</span>
+                    <div className="relative h-8 bg-gray-200 rounded-lg overflow-hidden">
+                      <div 
+                        className="h-full bg-gradient-to-r from-transparent to-current rounded-lg" 
+                        style={{ color: value }}
+                      ></div>
+                      <div className="absolute right-1 top-1 w-6 h-6 bg-white border-2 border-gray-400 rounded-full shadow cursor-pointer"></div>
                     </div>
-                    <div className="text-right text-sm text-gray-600">100%</div>
+                    <div className="text-right text-base text-gray-600">100%</div>
                   </div>
                 </div>
               )}
 
               {advancedTab === 'spectrum' && (
-                // 光譜顏色選擇器
+                // 光譜顏色選擇器 - 重新設計
                 <div className="space-y-4">
-                  {/* 主色彩區域 */}
+                  {/* 主色彩區域 - 使用簡化的彩虹漸層 */}
                   <div 
-                    className="w-full h-48 relative rounded-lg overflow-hidden border border-gray-200 cursor-crosshair"
+                    className="w-full h-48 relative rounded-lg overflow-hidden border border-gray-300 cursor-crosshair"
                     style={{
-                      background: `linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%), 
-                                   linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,0,0,1) 17%, rgba(255,255,0,1) 33%, rgba(0,255,0,1) 50%, rgba(0,255,255,1) 67%, rgba(0,0,255,1) 83%, rgba(255,0,255,1) 100%)`
+                      background: `linear-gradient(to bottom, 
+                        rgba(255,255,255,1) 0%, 
+                        rgba(255,255,255,0.8) 20%, 
+                        rgba(255,255,255,0.5) 40%, 
+                        rgba(255,255,255,0) 60%, 
+                        rgba(0,0,0,0.2) 80%, 
+                        rgba(0,0,0,0.8) 100%), 
+                        linear-gradient(to right, 
+                        #FF0000 0%, 
+                        #FFFF00 17%, 
+                        #00FF00 33%, 
+                        #00FFFF 50%, 
+                        #0000FF 67%, 
+                        #FF00FF 83%, 
+                        #FF0000 100%)`
                     }}
                     onClick={(e) => {
                       const rect = e.currentTarget.getBoundingClientRect();
                       const x = e.clientX - rect.left;
                       const y = e.clientY - rect.top;
-                      const hue = (x / rect.width) * 360;
-                      const saturation = 100;
-                      const lightness = 100 - (y / rect.height) * 100;
+                      const hue = Math.round((x / rect.width) * 360);
+                      const saturation = Math.round(100 - (y / rect.height) * 50);
+                      const lightness = Math.round(100 - (y / rect.height) * 50);
                       const color = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
                       handleAdvancedColorSelect(color);
                     }}
                   >
                     {/* 選擇指示器 */}
-                    <div className="absolute top-1/2 left-1/2 w-4 h-4 border-2 border-white rounded-full transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+                    <div className="absolute top-1/2 left-1/2 w-4 h-4 border-2 border-white rounded-full transform -translate-x-1/2 -translate-y-1/2 pointer-events-none shadow-lg">
+                      <div className="w-2 h-2 bg-white rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+                    </div>
                   </div>
 
                   {/* 不透明度滑桿 */}
-                  <div className="space-y-2">
-                    <span className="text-sm font-medium text-gray-600">不透明度</span>
-                    <div className="relative">
-                      <div className="w-full h-6 bg-gradient-to-r from-transparent to-current rounded" 
-                           style={{ color: value }}></div>
-                      <div className="absolute right-0 top-0 w-6 h-6 bg-white border-2 border-gray-300 rounded-full"></div>
+                  <div className="space-y-3">
+                    <span className="text-base font-medium text-gray-700">不透明度</span>
+                    <div className="relative h-8 bg-gray-200 rounded-lg overflow-hidden">
+                      <div 
+                        className="h-full bg-gradient-to-r from-transparent to-current rounded-lg" 
+                        style={{ color: value }}
+                      ></div>
+                      <div className="absolute right-1 top-1 w-6 h-6 bg-white border-2 border-gray-400 rounded-full shadow cursor-pointer"></div>
                     </div>
-                    <div className="text-right text-sm text-gray-600">100%</div>
+                    <div className="text-right text-base text-gray-600">100%</div>
                   </div>
                 </div>
               )}
 
               {advancedTab === 'sliders' && (
-                // 滑桿顏色選擇器
+                // 滑桿顏色選擇器 - 重新設計
                 <div className="space-y-6">
                   {/* 紅色滑桿 */}
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium text-gray-600">紅色</span>
-                      <span className="text-sm text-gray-500">255</span>
+                      <span className="text-base font-medium text-gray-700">紅色</span>
+                      <span className="text-base text-gray-600 font-mono">255</span>
                     </div>
-                    <div className="relative">
-                      <div className="w-full h-6 bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 rounded"></div>
-                      <div className="absolute right-0 top-0 w-6 h-6 bg-white border-2 border-gray-300 rounded-full"></div>
+                    <div className="relative h-8 bg-gray-200 rounded-lg overflow-hidden">
+                      <div className="w-full h-full bg-gradient-to-r from-black to-red-500 rounded-lg"></div>
+                      <div className="absolute right-1 top-1 w-6 h-6 bg-white border-2 border-gray-400 rounded-full shadow cursor-pointer"></div>
                     </div>
                   </div>
 
                   {/* 綠色滑桿 */}
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium text-gray-600">綠色</span>
-                      <span className="text-sm text-gray-500">77</span>
+                      <span className="text-base font-medium text-gray-700">綠色</span>
+                      <span className="text-base text-gray-600 font-mono">77</span>
                     </div>
-                    <div className="relative">
-                      <div className="w-full h-6 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 rounded"></div>
-                      <div className="absolute left-8 top-0 w-6 h-6 bg-white border-2 border-gray-300 rounded-full"></div>
+                    <div className="relative h-8 bg-gray-200 rounded-lg overflow-hidden">
+                      <div className="w-full h-full bg-gradient-to-r from-black to-green-500 rounded-lg"></div>
+                      <div className="absolute left-8 top-1 w-6 h-6 bg-white border-2 border-gray-400 rounded-full shadow cursor-pointer"></div>
                     </div>
                   </div>
 
                   {/* 藍色滑桿 */}
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium text-gray-600">藍色</span>
-                      <span className="text-sm text-gray-500">61</span>
+                      <span className="text-base font-medium text-gray-700">藍色</span>
+                      <span className="text-base text-gray-600 font-mono">61</span>
                     </div>
-                    <div className="relative">
-                      <div className="w-full h-6 bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 rounded"></div>
-                      <div className="absolute left-16 top-0 w-6 h-6 bg-white border-2 border-gray-300 rounded-full"></div>
+                    <div className="relative h-8 bg-gray-200 rounded-lg overflow-hidden">
+                      <div className="w-full h-full bg-gradient-to-r from-black to-blue-500 rounded-lg"></div>
+                      <div className="absolute left-16 top-1 w-6 h-6 bg-white border-2 border-gray-400 rounded-full shadow cursor-pointer"></div>
                     </div>
                   </div>
 
                   {/* 色碼顯示和輸入 */}
-                  <div className="space-y-2 pt-4 border-t border-gray-200">
+                  <div className="space-y-3 pt-4 border-t border-gray-200">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm text-blue-600">Display P3 十六進位顏色 #</span>
-                      <span className="text-sm font-mono bg-gray-100 px-2 py-1 rounded">EB4D3D</span>
+                      <span className="text-base text-blue-600 font-medium">十六進位顏色 #</span>
+                      <input
+                        type="text"
+                        value={value.replace('#', '').toUpperCase()}
+                        onChange={(e) => {
+                          const hex = e.target.value.replace(/[^0-9A-Fa-f]/g, '').slice(0, 6);
+                          if (hex.length === 6) {
+                            handleAdvancedColorSelect(`#${hex}`);
+                          }
+                        }}
+                        className="text-base font-mono bg-gray-100 px-3 py-2 rounded border border-gray-300 focus:border-blue-500 focus:outline-none w-20"
+                        placeholder="000000"
+                        maxLength={6}
+                      />
                     </div>
                   </div>
 
                   {/* 不透明度滑桿 */}
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium text-gray-600">不透明度</span>
-                      <span className="text-sm text-gray-500">100%</span>
+                      <span className="text-base font-medium text-gray-700">不透明度</span>
+                      <span className="text-base text-gray-600">100%</span>
                     </div>
-                    <div className="relative">
-                      <div className="w-full h-6 bg-gradient-to-r from-transparent to-current rounded" 
-                           style={{ color: value }}></div>
-                      <div className="absolute right-0 top-0 w-6 h-6 bg-white border-2 border-gray-300 rounded-full"></div>
+                    <div className="relative h-8 bg-gray-200 rounded-lg overflow-hidden">
+                      <div 
+                        className="h-full bg-gradient-to-r from-transparent to-current rounded-lg" 
+                        style={{ color: value }}
+                      ></div>
+                      <div className="absolute right-1 top-1 w-6 h-6 bg-white border-2 border-gray-400 rounded-full shadow cursor-pointer"></div>
                     </div>
                   </div>
                 </div>
@@ -397,26 +425,24 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
 
             {/* 底部顏色預覽和快速顏色選擇 */}
             <div className="p-4 border-t border-gray-200 bg-gray-50">
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center gap-4">
                 {/* 當前顏色預覽 */}
                 <div 
-                  className="w-12 h-8 rounded border border-gray-300"
+                  className="w-16 h-10 rounded-lg border border-gray-300 shadow-sm"
                   style={{ backgroundColor: value }}
                 ></div>
                 
                 {/* 快速顏色選擇 */}
-                <div className="flex gap-1">
-                  {['#FF0000', '#000000', '#0000FF', '#00FF00', '#FFFF00'].map((color) => (
+                <div className="flex gap-2 flex-1">
+                  {['#FF0000', '#000000', '#0000FF', '#00FF00', '#FFFF00', '#FF00FF'].map((color) => (
                     <button
                       key={color}
                       onClick={() => handleAdvancedColorSelect(color)}
-                      className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-gray-400 transition-colors"
+                      className="w-9 h-9 rounded-full border-2 border-gray-300 hover:border-gray-500 hover:scale-110 transition-all shadow-sm"
                       style={{ backgroundColor: color }}
+                      title={color}
                     />
                   ))}
-                  <button className="w-8 h-8 rounded-full border-2 border-gray-300 bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center">
-                    <span className="text-gray-600 text-lg">+</span>
-                  </button>
                 </div>
               </div>
             </div>

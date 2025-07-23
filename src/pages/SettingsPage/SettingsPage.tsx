@@ -245,7 +245,7 @@ export const SettingsPage: React.FC = () => {
                   <input
                     type="range"
                     min="12"
-                    max="200"
+                    max="500"
                     value={marqueeItem.config.fontSize}
                     onChange={(e) => handleConfigChange({ fontSize: parseInt(e.target.value) })}
                     className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
@@ -253,13 +253,13 @@ export const SettingsPage: React.FC = () => {
                 </div>
                 <div className="flex justify-between text-sm text-gray-500 mt-2 px-4">
                   <span>12px</span>
-                  <span>200px</span>
+                  <span>500px</span>
                 </div>
                 <div className="mt-2 px-4">
                   <input
                     type="number"
                     min="12"
-                    max="200"
+                    max="500"
                     value={marqueeItem.config.fontSize}
                     onChange={(e) => handleConfigChange({ fontSize: parseInt(e.target.value) || 12 })}
                     className="w-24 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 box-border"
