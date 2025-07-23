@@ -34,22 +34,22 @@ export interface ColorPalette {
   colors: string[];
 }
 
-// 常用顏色預設
+// 常用顏色預設 - 按指定順序排列
 export const COMMON_COLORS = [
-  '#FF0000', // 紅
-  '#FF8000', // 橙  
-  '#FFFF00', // 黃
-  '#00FF00', // 綠
-  '#0080FF', // 藍
-  '#4000FF', // 靛
-  '#8000FF', // 紫
-  '#808080', // 灰
-  '#000000', // 黑
-  '#FFFFFF', // 白
-  '#FF69B4', // 粉
-  '#FFD700', // 金
-  '#8B4513', // 咖啡
-  '#FF4500', // 深橙
-  '#32CD32', // 萊姆綠
-  '#1E90FF', // 深藍
+  '#FFFFFF', // White
+  '#808080', // Grey
+  '#000000', // Black
+  '#FFB6C1', // Pink
+  '#FF0000', // Red
+  '#FF4500', // Red Orange
+  '#FF8C00', // Orange
+  '#FFD700', // Yellow Orange
+  '#FFFF00', // Yellow
+  '#9ACD32', // Yellow Green
+  '#00FF00', // Green
+  '#008B8B', // Blue Green
+  '#0000FF', // Blue
+  '#8A2BE2', // Blue Violet
+  '#9400D3', // Violet
+  '#DC143C', // Red Violet
 ];

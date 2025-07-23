@@ -36,28 +36,40 @@ export const MarqueeDisplay: React.FC<MarqueeDisplayProps> = ({
     return 'marquee-container';
   };
 
-  const textStyles = {
+  const textStyles: React.CSSProperties = {
     fontSize: `${config.fontSize}px`,
     color: config.textColor,
     fontFamily: config.fontFamily,
-    textShadow: config.hasTextShadow ? '2px 2px 4px rgba(0,0,0,0.3)' : 'none',
+    textShadow: config.hasTextShadow ? '2px 2px 4px rgba(0,0,0,0.5)' : 'none',
     border: config.hasBorder ? `2px solid ${config.borderColor}` : 'none',
     padding: config.hasBorder ? '8px 16px' : '0',
     borderRadius: config.hasBorder ? '8px' : '0',
-    animationDuration: `${20 - config.speed * 2}s`,
+    animationDuration: `${Math.max(1, 21 - config.speed * 2)}s`,
     animationPlayState: config.isPlaying ? 'running' : 'paused',
+    lineHeight: '1.2',
+    whiteSpace: config.direction === 'up' || config.direction === 'down' ? 'pre-line' : 'nowrap',
   };
 
-  const containerStyles = {
+  const containerStyles: React.CSSProperties = {
     backgroundColor: config.backgroundColor,
+    width: '100%',
+    height: '100%',
+    position: 'relative',
+    overflow: 'hidden',
   };
 
   useEffect(() => {
     if (contentRef.current) {
-      contentRef.current.style.animationDuration = `${20 - config.speed * 2}s`;
+      const duration = `${Math.max(1, 21 - config.speed * 2)}s`;
+      contentRef.current.style.animationDuration = duration;
       contentRef.current.style.animationPlayState = config.isPlaying ? 'running' : 'paused';
+      contentRef.current.style.fontSize = `${config.fontSize}px`;
+      contentRef.current.style.color = config.textColor;
+      contentRef.current.style.fontFamily = config.fontFamily;
+      contentRef.current.style.textShadow = config.hasTextShadow ? '2px 2px 4px rgba(0,0,0,0.5)' : 'none';
+      contentRef.current.style.border = config.hasBorder ? `2px solid ${config.borderColor}` : 'none';
     }
-  }, [config.speed, config.isPlaying]);
+  }, [config]);
 
   return (
     <div

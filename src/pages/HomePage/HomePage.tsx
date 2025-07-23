@@ -7,7 +7,9 @@ import {
   Settings, 
   Trash2, 
   Copy, 
-  Calendar
+  Calendar,
+  Home,
+  Monitor
 } from 'lucide-react';
 
 export const HomePage: React.FC = () => {
@@ -69,54 +71,78 @@ export const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50" style={{ padding: '20px 30px' }}>
       {/* 頂部標題區 */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div className="bg-white shadow-sm border-b rounded-xl">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-8">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
             <div>
-              <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
+              <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-3">
                 🎪 跑馬燈工具
               </h1>
-              <p className="text-gray-600 text-sm sm:text-base">
+              <p className="text-gray-600 text-lg sm:text-xl">
                 管理你的所有跑馬燈項目，創建精美的數位顯示效果
               </p>
             </div>
-            <div className="flex items-center gap-3">
-              <span className="text-sm text-gray-500">
-                共 {getTotalCount()} 個項目
-              </span>
-              <button
-                onClick={() => setShowNewMarqueeDialog(true)}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors shadow-lg hover:shadow-xl"
-              >
-                <Plus className="w-5 h-5" />
-                新增跑馬燈
-              </button>
+            <div className="flex flex-col sm:flex-row items-end sm:items-center gap-4">
+              {/* 快速跳轉按鈕 - 只在較大螢幕顯示 */}
+              <div className="hidden lg:flex items-center gap-3">
+                <button
+                  className="p-3 text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-colors"
+                  title="主頁"
+                >
+                  <Home className="w-6 h-6" />
+                </button>
+                <button
+                  onClick={() => navigate('/settings')}
+                  className="p-3 text-gray-600 hover:text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
+                  title="設定"
+                >
+                  <Settings className="w-6 h-6" />
+                </button>
+                <button
+                  className="p-3 text-gray-600 hover:text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
+                  title="全螢幕"
+                >
+                  <Monitor className="w-6 h-6" />
+                </button>
+              </div>
+              <div className="flex items-center gap-4">
+                <span className="text-lg text-gray-500 ml-auto">
+                  共 {getTotalCount()} 個項目
+                </span>
+                <button
+                  onClick={() => setShowNewMarqueeDialog(true)}
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors shadow-lg hover:shadow-xl text-lg"
+                >
+                  <Plus className="w-6 h-6" />
+                  新增跑馬燈
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* 主內容區 */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12">
         {marqueeItems.length === 0 ? (
           // 空狀態
           <div className="text-center py-16">
             <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gray-100 flex items-center justify-center">
               <Play className="w-12 h-12 text-gray-400" />
             </div>
-            <h3 className="text-xl font-medium text-gray-900 mb-2">
+            <h3 className="text-2xl font-medium text-gray-900 mb-3">
               還沒有跑馬燈項目
             </h3>
-            <p className="text-gray-500 mb-8 max-w-md mx-auto">
-              點擊「新增跑馬燈」按鈕來創建你的第一個數位看板顯示
+            <p className="text-gray-500 mb-10 max-w-md mx-auto text-lg">
+              點擊「新增跑馬燈」按鈕来創建你的第一個數位看板顯示
             </p>
             <button
               onClick={() => setShowNewMarqueeDialog(true)}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors text-lg"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors text-xl"
             >
-              <Plus className="w-6 h-6" />
+              <Plus className="w-7 h-7" />
               立即開始
             </button>
           </div>
@@ -146,50 +172,53 @@ export const HomePage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* 資訊區域 */}
-                <div className="p-4 border-t border-gray-100">
-                  <div className="flex items-start justify-between mb-3">
+                {/* 資訊區域 - 可點擊進入設定 */}
+                <div 
+                  className="p-6 border-t border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors"
+                  onClick={() => handleEditMarquee(item.id)}
+                >
+                  <div className="flex items-start justify-between mb-4">
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-gray-900 truncate text-lg">
+                      <h3 className="font-semibold text-gray-900 truncate text-xl">
                         {item.name}
                       </h3>
-                      <div className="flex items-center gap-1 text-xs text-gray-500 mt-1">
-                        <Calendar className="w-3 h-3" />
+                      <div className="flex items-center gap-2 text-base text-gray-500 mt-2">
+                        <Calendar className="w-4 h-4" />
                         {formatDate(item.updatedAt)}
                       </div>
                     </div>
                   </div>
 
                   {/* 操作按鈕 */}
-                  <div className="flex gap-2">
+                  <div className="flex gap-3" onClick={(e) => e.stopPropagation()}>
                     <button
                       onClick={() => handlePlayMarquee(item.id)}
-                      className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition-colors"
+                      className="flex-1 inline-flex items-center justify-center gap-3 px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg text-base font-medium transition-colors"
                     >
-                      <Play className="w-4 h-4" />
-                      播放
+                      <Monitor className="w-5 h-5" />
+                      全螢幕播放
                     </button>
                     <button
                       onClick={() => handleEditMarquee(item.id)}
-                      className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors"
+                      className="flex-1 inline-flex items-center justify-center gap-3 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-base font-medium transition-colors"
                     >
-                      <Settings className="w-4 h-4" />
+                      <Settings className="w-5 h-5" />
                       設定
                     </button>
-                    <div className="flex gap-1">
+                    <div className="flex gap-2">
                       <button
                         onClick={() => handleDuplicateMarquee(item.id)}
-                        className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                        className="p-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                         title="複製"
                       >
-                        <Copy className="w-4 h-4" />
+                        <Copy className="w-5 h-5" />
                       </button>
                       <button
                         onClick={() => handleDeleteMarquee(item.id, item.name)}
-                        className="p-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        className="p-3 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                         title="刪除"
                       >
-                        <Trash2 className="w-4 h-4" />
+                        <Trash2 className="w-5 h-5" />
                       </button>
                     </div>
                   </div>
@@ -205,12 +234,12 @@ export const HomePage: React.FC = () => {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-md">
             <div className="p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-6">
                 新增跑馬燈
               </h3>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-lg font-medium text-gray-700 mb-3">
                     名稱
                   </label>
                   <input
@@ -218,7 +247,7 @@ export const HomePage: React.FC = () => {
                     value={newMarqueeName}
                     onChange={(e) => setNewMarqueeName(e.target.value)}
                     placeholder="輸入跑馬燈名稱..."
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-5 py-4 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     onKeyDown={(e) => e.key === 'Enter' && handleCreateMarquee()}
                     autoFocus
                   />
@@ -230,14 +259,14 @@ export const HomePage: React.FC = () => {
                     setShowNewMarqueeDialog(false);
                     setNewMarqueeName('');
                   }}
-                  className="flex-1 px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium transition-colors"
+                  className="flex-1 px-6 py-4 text-lg text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium transition-colors"
                 >
                   取消
                 </button>
                 <button
                   onClick={handleCreateMarquee}
                   disabled={!newMarqueeName.trim()}
-                  className="flex-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white rounded-lg font-medium transition-colors"
+                  className="flex-1 px-6 py-4 text-lg bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white rounded-lg font-medium transition-colors"
                 >
                   創建
                 </button>

@@ -36,7 +36,7 @@ body {
   animation-play-state: paused;
 }
 
-/* 確保全屏顯示正確 */
+/* 確保全螢幕顯示正確 */
 .marquee-fullscreen,
 .marquee-fullscreen * {
   width: 100vw !important;
@@ -45,30 +45,7 @@ body {
   max-height: 100vh !important;
 }
 
-/* 響應式字體大小 */
-@media (max-width: 640px) {  /* 手機 */
-  .marquee-content {
-    font-size: clamp(14px, 4vw, 60px) !important;
-  }
-}
-
-@media (min-width: 641px) and (max-width: 1024px) {  /* 平板 */
-  .marquee-content {
-    font-size: clamp(20px, 6vw, 80px) !important;
-  }
-}
-
-@media (min-width: 1025px) and (max-width: 1920px) {  /* 桌機 */
-  .marquee-content {
-    font-size: clamp(24px, 8vw, 120px) !important;
-  }
-}
-
-@media (min-width: 1921px) {  /* 大螢幕/電視 */
-  .marquee-content {
-    font-size: clamp(32px, 10vw, 200px) !important;
-  }
-}
+/* 移除響應式字體限制，讓用戶自由控制 */
 
 @keyframes marquee {
   0% { transform: translateX(100%); }
