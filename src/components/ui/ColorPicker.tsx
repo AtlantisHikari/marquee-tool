@@ -183,15 +183,15 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
 
       {/* 進階顏色選擇器浮動視窗 */}
       {isAdvancedOpen && (
-        <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4">
+        <>
           {/* 背景遮罩 */}
           <div 
-            className="absolute inset-0 bg-black bg-opacity-80" 
+            className="fixed inset-0 z-50 bg-black bg-opacity-75" 
             onClick={() => setIsAdvancedOpen(false)}
           />
           
           {/* 進階選擇器視窗 */}
-          <div className="relative bg-white rounded-2xl shadow-2xl border-4 border-gray-400 w-full max-w-2xl h-[80vh] flex flex-col" style={{ backgroundColor: '#ffffff' }}>
+          <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[51] bg-white rounded-xl shadow-2xl border-2 border-gray-300 w-[95vw] max-w-2xl h-[85vh] overflow-hidden flex flex-col" style={{ backgroundColor: '#ffffff' }}>
             
             {/* 標題欄 */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gray-50">
@@ -518,7 +518,7 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
