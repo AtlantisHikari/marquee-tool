@@ -71,10 +71,10 @@ export const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50" style={{ padding: '16px 24px' }}>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50" style={{ padding: '12px 20px' }}>
       {/* 頂部標題區 */}
       <div className="bg-white shadow-sm border-b rounded-xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 py-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
             <div>
               <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-3">
@@ -125,7 +125,7 @@ export const HomePage: React.FC = () => {
       </div>
 
       {/* 主內容區 */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 py-8">
         {marqueeItems.length === 0 ? (
           // 空狀態
           <div className="text-center py-16">

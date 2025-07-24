@@ -93,10 +93,10 @@ export const SettingsPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50" style={{ padding: '18px 28px', border: '3px solid #000000' }}>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50" style={{ padding: '16px 24px' }}>
       {/* 頂部導航 */}
       <div className="bg-white shadow-sm border-b rounded-xl">
-        <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 py-6">
+        <div className="max-w-4xl mx-auto px-8 sm:px-12 lg:px-16 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-6">
               <button
@@ -162,7 +162,7 @@ export const SettingsPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 py-8">
+      <div className="max-w-4xl mx-auto px-8 sm:px-12 lg:px-16 py-8">
         {/* 預覽區域 */}
         {isPreviewVisible && (
           <div className="mb-6">
@@ -196,15 +196,15 @@ export const SettingsPage: React.FC = () => {
         )}
 
         {/* 設定面板 */}
-        <div className="grid grid-cols-1 gap-5 max-w-full">
+        <div className="grid grid-cols-1 gap-8 max-w-full">
           {/* 基本設定 */}
-          <div className="bg-white rounded-xl shadow-lg p-5 border border-gray-200 overflow-hidden">
+          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200 overflow-hidden">
             <h2 className="font-semibold text-gray-900 mb-4 flex items-center gap-2" style={{ fontSize: '28px' }}>
               <Type className="w-6 h-6 text-blue-600" />
               基本設定
             </h2>
             
-            <div className="space-y-5 max-w-full">
+            <div className="space-y-6 max-w-full">
               {/* 跑馬燈名稱 */}
               <div className="max-w-full">
                 <label className="block font-medium text-gray-700 mb-2" style={{ fontSize: '24px' }}>
@@ -270,14 +270,17 @@ export const SettingsPage: React.FC = () => {
             </div>
           </div>
 
+          {/* 分隔線 */}
+          <div className="border-t border-gray-200 my-8"></div>
+
           {/* 顏色設定 */}
-          <div className="bg-white rounded-xl shadow-lg p-4 sm:p-5 border border-gray-200">
+          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
             <h2 className="font-semibold text-gray-900 mb-4 flex items-center gap-2" style={{ fontSize: '28px' }}>
               <Palette className="w-6 h-6 text-purple-600" />
               顏色設定
             </h2>
             
-            <div className="space-y-5">
+            <div className="space-y-6">
               <ColorPicker
                 label="文字顏色"
                 value={marqueeItem.config.textColor}
@@ -292,14 +295,17 @@ export const SettingsPage: React.FC = () => {
             </div>
           </div>
 
+          {/* 分隔線 */}
+          <div className="border-t border-gray-200 my-8"></div>
+
           {/* 動畫設定 */}
-          <div className="bg-white rounded-xl shadow-lg p-4 sm:p-5 border border-gray-200">
+          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
             <h2 className="font-semibold text-gray-900 mb-4 flex items-center gap-2" style={{ fontSize: '28px' }}>
               <Gauge className="w-6 h-6 text-green-600" />
               動畫設定
             </h2>
             
-            <div className="space-y-5">
+            <div className="space-y-6">
               {/* 滾動速度 */}
               <div className="w-full overflow-hidden">
                 <label className="block font-medium text-gray-700 mb-3" style={{ fontSize: '24px' }}>
@@ -370,14 +376,17 @@ export const SettingsPage: React.FC = () => {
             </div>
           </div>
 
+          {/* 分隔線 */}
+          <div className="border-t border-gray-200 my-8"></div>
+
           {/* 字體設定 */}
-          <div className="bg-white rounded-xl shadow-lg p-4 sm:p-5 border border-gray-200">
+          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
             <h2 className="font-semibold text-gray-900 mb-4 flex items-center gap-2" style={{ fontSize: '28px' }}>
               <Settings className="w-6 h-6 text-gray-600" />
               字體設定
             </h2>
             
-            <div className="space-y-5">
+            <div className="space-y-6">
               {/* 字形變化 */}
               <div>
                 <label className="block font-medium text-gray-700 mb-4" style={{ fontSize: '24px' }}>
