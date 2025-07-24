@@ -71,10 +71,10 @@ export const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50" style={{ padding: '20px 30px' }}>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50" style={{ padding: '16px 24px' }}>
       {/* 頂部標題區 */}
       <div className="bg-white shadow-sm border-b rounded-xl">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
             <div>
               <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-3">
@@ -125,7 +125,7 @@ export const HomePage: React.FC = () => {
       </div>
 
       {/* 主內容區 */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {marqueeItems.length === 0 ? (
           // 空狀態
           <div className="text-center py-16">
@@ -253,20 +253,20 @@ export const HomePage: React.FC = () => {
                   />
                 </div>
               </div>
-              <div className="flex gap-3 mt-8">
+              <div className="flex gap-3 mt-6">
                 <button
                   onClick={() => {
                     setShowNewMarqueeDialog(false);
                     setNewMarqueeName('');
                   }}
-                  className="flex-1 px-6 py-8 text-2xl text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium transition-colors"
+                  className="flex-1 px-4 py-6 text-xl text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium transition-colors"
                 >
                   取消
                 </button>
                 <button
                   onClick={handleCreateMarquee}
                   disabled={!newMarqueeName.trim()}
-                  className="flex-1 px-6 py-8 text-2xl bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white rounded-lg font-medium transition-colors"
+                  className="flex-1 px-4 py-6 text-xl bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white rounded-lg font-medium transition-colors"
                 >
                   新增
                 </button>
