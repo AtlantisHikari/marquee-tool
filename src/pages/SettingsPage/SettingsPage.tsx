@@ -35,31 +35,6 @@ export const SettingsPage: React.FC = () => {
   const [isPreviewVisible, setIsPreviewVisible] = useState(true);
   const [marqueeName, setMarqueeName] = useState('');
 
-  // 確保從全螢幕模式跳轉過來時正確重置樣式
-  React.useEffect(() => {
-    // 重置body樣式
-    document.body.style.overflow = 'unset';
-    document.body.style.backgroundColor = '';
-    
-    // 退出全螢幕模式（如果正在全螢幕）
-    if (document.fullscreenElement || (document as any).webkitFullscreenElement || 
-        (document as any).mozFullScreenElement || (document as any).msFullscreenElement) {
-      try {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if ((document as any).webkitExitFullscreen) {
-          (document as any).webkitExitFullscreen();
-        } else if ((document as any).mozCancelFullScreen) {
-          (document as any).mozCancelFullScreen();
-        } else if ((document as any).msExitFullscreen) {
-          (document as any).msExitFullscreen();
-        }
-      } catch (error) {
-        console.log('無法退出全螢幕模式:', error);
-      }
-    }
-  }, []);
-
   React.useEffect(() => {
     if (id) {
       setCurrentItemId(id);
@@ -118,16 +93,7 @@ export const SettingsPage: React.FC = () => {
   ];
 
   return (
-    <div 
-      className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50" 
-      style={{ 
-        padding: '16px 24px',
-        position: 'relative',
-        zIndex: 10000,
-        minHeight: '100vh',
-        width: '100%'
-      }}
-    >
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50" style={{ padding: '16px 24px' }}>
       {/* 頂部導航 */}
       <div className="bg-white shadow-sm border-b rounded-xl">
         <div className="max-w-4xl mx-auto px-8 sm:px-12 lg:px-16 py-6">
