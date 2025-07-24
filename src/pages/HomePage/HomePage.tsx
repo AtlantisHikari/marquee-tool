@@ -78,10 +78,10 @@ export const HomePage: React.FC = () => {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
             <div>
               <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-3">
-                🎪 跑馬燈工具
+                🎪 跑馬燈數位看板
               </h1>
               <p className="text-gray-600 text-lg sm:text-xl">
-                管理你的所有跑馬燈項目，創建精美的數位顯示效果
+                用跑馬燈幫你放大文字，應援你的創意
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-end sm:items-center gap-4">
@@ -133,17 +133,17 @@ export const HomePage: React.FC = () => {
               <Play className="w-12 h-12 text-gray-400" />
             </div>
             <h3 className="text-2xl font-medium text-gray-900 mb-3">
-              還沒有跑馬燈項目
+              目前還沒有跑馬燈被建立哦！
             </h3>
             <p className="text-gray-500 mb-10 max-w-md mx-auto text-lg">
-              點擊「新增跑馬燈」按鈕来創建你的第一個數位看板顯示
+              按下「新增跑馬燈」，創建你的第一個數位看版
             </p>
             <button
               onClick={() => setShowNewMarqueeDialog(true)}
               className="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors text-xl"
             >
               <Plus className="w-7 h-7" />
-              立即開始
+              馬上去新增
             </button>
           </div>
         ) : (
@@ -253,22 +253,22 @@ export const HomePage: React.FC = () => {
                   />
                 </div>
               </div>
-              <div className="flex gap-3 mt-6">
+              <div className="flex gap-3 mt-8">
                 <button
                   onClick={() => {
                     setShowNewMarqueeDialog(false);
                     setNewMarqueeName('');
                   }}
-                  className="flex-1 px-6 py-4 text-lg text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium transition-colors"
+                  className="flex-1 px-6 py-8 text-2xl text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium transition-colors"
                 >
                   取消
                 </button>
                 <button
                   onClick={handleCreateMarquee}
                   disabled={!newMarqueeName.trim()}
-                  className="flex-1 px-6 py-4 text-lg bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white rounded-lg font-medium transition-colors"
+                  className="flex-1 px-6 py-8 text-2xl bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white rounded-lg font-medium transition-colors"
                 >
-                  創建
+                  新增
                 </button>
               </div>
             </div>
