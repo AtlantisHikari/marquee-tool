@@ -107,8 +107,8 @@ export const HomePage: React.FC = () => {
                   <Monitor className="w-6 h-6" />
                 </button>
               </div>
-              <div className="flex items-center gap-4">
-                <span className="text-lg text-gray-500 ml-auto">
+              <div className="flex items-center justify-between w-full">
+                <span className="text-lg text-gray-500">
                   共 {getTotalCount()} 個項目
                 </span>
                 <button
@@ -174,8 +174,9 @@ export const HomePage: React.FC = () => {
 
                 {/* 資訊區域 - 可點擊進入設定 */}
                 <div 
-                  className="p-8 border-t border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors"
+                  className="p-4 border-t border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors"
                   onClick={() => handleEditMarquee(item.id)}
+                  style={{ margin: '10px' }}
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex-1 min-w-0">
@@ -190,17 +191,17 @@ export const HomePage: React.FC = () => {
                   </div>
 
                   {/* 操作按鈕 */}
-                  <div className="flex gap-4" onClick={(e) => e.stopPropagation()}>
+                  <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
                     <button
                       onClick={() => handlePlayMarquee(item.id)}
-                      className="flex-1 inline-flex items-center justify-center gap-3 px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg text-base font-medium transition-colors"
+                      className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg text-xl font-medium transition-colors"
                     >
                       <Monitor className="w-5 h-5" />
                       全螢幕播放
                     </button>
                     <button
                       onClick={() => handleEditMarquee(item.id)}
-                      className="flex-1 inline-flex items-center justify-center gap-3 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-base font-medium transition-colors"
+                      className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xl font-medium transition-colors"
                     >
                       <Settings className="w-5 h-5" />
                       設定
