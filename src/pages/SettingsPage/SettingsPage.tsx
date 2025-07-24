@@ -199,16 +199,16 @@ export const SettingsPage: React.FC = () => {
         <div className="border-4 border-black rounded-lg" style={{ padding: '10px' }}>
         <div className="grid grid-cols-1 gap-8 max-w-full">
           {/* 基本設定 */}
-          <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-200 overflow-hidden">
-            <h2 className="font-semibold text-gray-900 mb-6 flex items-center gap-4" style={{ fontSize: '32px' }}>
+          <div className="bg-white rounded-xl shadow-lg p-8 overflow-hidden">
+            <h2 className="font-semibold text-gray-900 mb-2 flex items-center gap-4" style={{ fontSize: '32px' }}>
               <Type className="w-8 h-8 text-blue-600" />
               基本設定
             </h2>
             
-            <div className="space-y-4 max-w-full">
+            <div className="space-y-6 max-w-full">
               {/* 跑馬燈名稱 */}
               <div className="max-w-full">
-                <label className="block font-medium text-gray-700 mb-2" style={{ fontSize: '20px' }}>
+                <label className="block font-medium text-gray-700 mb-2 mt-4" style={{ fontSize: '20px' }}>
                   跑馬燈名稱
                 </label>
                 <input
@@ -224,7 +224,7 @@ export const SettingsPage: React.FC = () => {
 
               {/* 文字內容 */}
               <div className="max-w-full">
-                <label className="block font-medium text-gray-700 mb-2" style={{ fontSize: '20px' }}>
+                <label className="block font-medium text-gray-700 mb-2 mt-4" style={{ fontSize: '20px' }}>
                   文字內容
                 </label>
                 <textarea
@@ -239,7 +239,7 @@ export const SettingsPage: React.FC = () => {
 
               {/* 字體大小 */}
               <div className="max-w-full">
-                <label className="block font-medium text-gray-700 mb-2" style={{ fontSize: '20px' }}>
+                <label className="block font-medium text-gray-700 mb-2 mt-4" style={{ fontSize: '20px' }}>
                   字體大小: {marqueeItem.config.fontSize}px
                 </label>
                 <div className="px-4 w-full max-w-full">
@@ -272,13 +272,13 @@ export const SettingsPage: React.FC = () => {
           </div>
 
           {/* 顏色設定 */}
-          <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-            <h2 className="font-semibold text-gray-900 mb-6 flex items-center gap-4" style={{ fontSize: '32px' }}>
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            <h2 className="font-semibold text-gray-900 mb-2 flex items-center gap-4" style={{ fontSize: '32px' }}>
               <Palette className="w-8 h-8 text-purple-600" />
               顏色設定
             </h2>
             
-            <div className="space-y-4">
+            <div className="space-y-6">
               <ColorPicker
                 label="文字顏色"
                 value={marqueeItem.config.textColor}
@@ -294,16 +294,16 @@ export const SettingsPage: React.FC = () => {
           </div>
 
           {/* 動畫設定 */}
-          <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-            <h2 className="font-semibold text-gray-900 mb-6 flex items-center gap-4" style={{ fontSize: '32px' }}>
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            <h2 className="font-semibold text-gray-900 mb-2 flex items-center gap-4" style={{ fontSize: '32px' }}>
               <Gauge className="w-8 h-8 text-green-600" />
               動畫設定
             </h2>
             
-            <div className="space-y-4">
+            <div className="space-y-6">
               {/* 滾動速度 */}
               <div className="w-full overflow-hidden">
-                <label className="block font-medium text-gray-700 mb-2" style={{ fontSize: '20px' }}>
+                <label className="block font-medium text-gray-700 mb-2 mt-4" style={{ fontSize: '20px' }}>
                   滾動速度: {marqueeItem.config.speed}
                 </label>
                 <div className="px-6 w-full">
@@ -335,7 +335,7 @@ export const SettingsPage: React.FC = () => {
 
               {/* 滾動方向 */}
               <div>
-                <label className="block font-medium text-gray-700 mb-2" style={{ fontSize: '20px' }}>
+                <label className="block font-medium text-gray-700 mb-2 mt-4" style={{ fontSize: '20px' }}>
                   滾動方向
                 </label>
                 <div className="grid grid-cols-4 gap-6">
@@ -372,23 +372,23 @@ export const SettingsPage: React.FC = () => {
           </div>
 
           {/* 字體設定 */}
-          <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-            <h2 className="font-semibold text-gray-900 mb-6 flex items-center gap-4" style={{ fontSize: '32px' }}>
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            <h2 className="font-semibold text-gray-900 mb-2 flex items-center gap-4" style={{ fontSize: '32px' }}>
               <Settings className="w-8 h-8 text-gray-600" />
               字體設定
             </h2>
             
-            <div className="space-y-4">
+            <div className="space-y-6">
               {/* 字形變化 */}
               <div>
-                <label className="block font-medium text-gray-700 mb-2" style={{ fontSize: '20px' }}>
+                <label className="block font-medium text-gray-700 mb-2 mt-4" style={{ fontSize: '20px' }}>
                   字形變化
                 </label>
                 <div className="grid grid-cols-3 gap-6">
                   <button
                     onClick={() => handleConfigChange({ fontWeight: 'normal', fontStyle: 'normal' })}
                     className={cn(
-                      'relative px-6 py-32 rounded-2xl transition-all duration-200 flex flex-col items-center justify-center gap-4 font-semibold text-lg',
+                      'relative px-6 py-48 rounded-2xl transition-all duration-200 flex flex-col items-center justify-center gap-6 font-semibold text-lg',
                       'transform cursor-pointer select-none border-4',
                       marqueeItem.config.fontWeight === 'normal' && marqueeItem.config.fontStyle === 'normal'
                         ? 'bg-gray-800 text-white border-gray-800 translate-y-1 shadow-inner'
@@ -400,13 +400,13 @@ export const SettingsPage: React.FC = () => {
                         : 'inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 6px 16px rgba(0, 0, 0, 0.15)'
                     }}
                   >
-                    <span className="text-2xl font-bold">預設</span>
+                    <span className="text-4xl font-bold">預設</span>
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-transparent via-transparent to-white/20 pointer-events-none" />
                   </button>
                   <button
                     onClick={() => handleConfigChange({ fontWeight: 'bold' })}
                     className={cn(
-                      'relative px-6 py-32 rounded-2xl transition-all duration-200 flex flex-col items-center justify-center gap-4 font-bold text-lg',
+                      'relative px-6 py-48 rounded-2xl transition-all duration-200 flex flex-col items-center justify-center gap-6 font-bold text-lg',
                       'transform cursor-pointer select-none border-4',
                       marqueeItem.config.fontWeight === 'bold'
                         ? 'bg-gray-800 text-white border-gray-800 translate-y-1 shadow-inner'
@@ -418,13 +418,13 @@ export const SettingsPage: React.FC = () => {
                         : 'inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 6px 16px rgba(0, 0, 0, 0.15)'
                     }}
                   >
-                    <span className="text-2xl font-bold">粗體</span>
+                    <span className="text-4xl font-bold">粗體</span>
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-transparent via-transparent to-white/20 pointer-events-none" />
                   </button>
                   <button
                     onClick={() => handleConfigChange({ fontStyle: 'italic' })}
                     className={cn(
-                      'relative px-6 py-32 rounded-2xl transition-all duration-200 flex flex-col items-center justify-center gap-4 font-semibold text-lg italic',
+                      'relative px-6 py-48 rounded-2xl transition-all duration-200 flex flex-col items-center justify-center gap-6 font-semibold text-lg italic',
                       'transform cursor-pointer select-none border-4',
                       marqueeItem.config.fontStyle === 'italic'
                         ? 'bg-gray-800 text-white border-gray-800 translate-y-1 shadow-inner'
@@ -436,7 +436,7 @@ export const SettingsPage: React.FC = () => {
                         : 'inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 6px 16px rgba(0, 0, 0, 0.15)'
                     }}
                   >
-                    <span className="text-2xl font-bold">斜體</span>
+                    <span className="text-4xl font-bold">斜體</span>
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-transparent via-transparent to-white/20 pointer-events-none" />
                   </button>
                 </div>
@@ -444,7 +444,7 @@ export const SettingsPage: React.FC = () => {
 
               {/* 字體系列 */}
               <div>
-                <label className="block font-medium text-gray-700 mb-2" style={{ fontSize: '20px' }}>
+                <label className="block font-medium text-gray-700 mb-2 mt-4" style={{ fontSize: '20px' }}>
                   字體系列
                 </label>
                 <select
