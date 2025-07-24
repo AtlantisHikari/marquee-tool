@@ -188,6 +188,7 @@ export const PlayPage: React.FC = () => {
         <MarqueeDisplay 
           config={marqueeItem.config}
           className="w-full h-full"
+          isFullscreen={true}
         />
       </div>
 

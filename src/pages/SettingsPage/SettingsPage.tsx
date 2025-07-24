@@ -107,7 +107,7 @@ export const SettingsPage: React.FC = () => {
               </button>
               <div>
                 <h1 className="font-bold text-gray-900 whitespace-nowrap" style={{ fontSize: '32px' }}>
-                  跑馬燈設定
+                  🔧 跑馬燈設定
                 </h1>
                 <p className="text-base text-gray-600 mt-2">
                   自訂你的跑馬燈顯示效果
@@ -189,6 +189,7 @@ export const SettingsPage: React.FC = () => {
                 <MarqueeDisplay 
                   config={marqueeItem.config}
                   className="w-full h-full"
+                  isFullscreen={false}
                 />
               </div>
             </div>

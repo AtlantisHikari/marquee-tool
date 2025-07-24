@@ -5,11 +5,13 @@ import { cn } from '../../utils/cn';
 interface MarqueeDisplayProps {
   config: MarqueeConfig;
   className?: string;
+  isFullscreen?: boolean;
 }
 
 export const MarqueeDisplay: React.FC<MarqueeDisplayProps> = ({ 
   config, 
-  className 
+  className,
+  isFullscreen = false
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -56,9 +58,9 @@ export const MarqueeDisplay: React.FC<MarqueeDisplayProps> = ({
     backgroundColor: config.backgroundColor,
     width: '100%',
     height: '100%',
-    minWidth: '100vw',
-    minHeight: '100vh',
-    position: 'relative',
+    minWidth: isFullscreen ? '100vw' : '100%',
+    minHeight: isFullscreen ? '100vh' : '100%',
+    position: isFullscreen ? 'absolute' : 'relative',
     overflow: 'hidden',
   };
 
@@ -87,11 +89,13 @@ export const MarqueeDisplay: React.FC<MarqueeDisplayProps> = ({
       )}
       style={{
         ...containerStyles,
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
+        ...(isFullscreen && {
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+        }),
         display: 'flex',
         alignItems: 'center',
         justifyContent: config.direction === 'up' || config.direction === 'down' ? 'center' : 'flex-start',
