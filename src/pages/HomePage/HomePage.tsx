@@ -71,10 +71,10 @@ export const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50" style={{ padding: '12px 20px' }}>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50" style={{ padding: '20px 30px' }}>
       {/* 頂部標題區 */}
       <div className="bg-white shadow-sm border-b rounded-xl">
-        <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 py-6">
+        <div className="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16 py-8">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
             <div>
               <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-3">
@@ -125,7 +125,7 @@ export const HomePage: React.FC = () => {
       </div>
 
       {/* 主內容區 */}
-      <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 py-8">
+      <div className="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16 py-10">
         {marqueeItems.length === 0 ? (
           // 空狀態
           <div className="text-center py-16">
@@ -148,11 +148,11 @@ export const HomePage: React.FC = () => {
           </div>
         ) : (
           // 跑馬燈列表
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
             {marqueeItems.map((item) => (
               <div
                 key={item.id}
-                className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 overflow-hidden border border-gray-100"
+                className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border-2 border-gray-200"
               >
                 {/* 預覽區域 */}
                 <div 
@@ -174,7 +174,7 @@ export const HomePage: React.FC = () => {
 
                 {/* 資訊區域 - 可點擊進入設定 */}
                 <div 
-                  className="p-6 border-t border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors"
+                  className="p-8 border-t border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors"
                   onClick={() => handleEditMarquee(item.id)}
                 >
                   <div className="flex items-start justify-between mb-4">
@@ -190,7 +190,7 @@ export const HomePage: React.FC = () => {
                   </div>
 
                   {/* 操作按鈕 */}
-                  <div className="flex gap-3" onClick={(e) => e.stopPropagation()}>
+                  <div className="flex gap-4" onClick={(e) => e.stopPropagation()}>
                     <button
                       onClick={() => handlePlayMarquee(item.id)}
                       className="flex-1 inline-flex items-center justify-center gap-3 px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg text-base font-medium transition-colors"

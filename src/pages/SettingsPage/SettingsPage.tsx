@@ -196,15 +196,16 @@ export const SettingsPage: React.FC = () => {
         )}
 
         {/* 設定面板 */}
-        <div className="grid grid-cols-1 gap-8 max-w-full">
+        <div className="border-4 border-black rounded-lg p-8">
+        <div className="grid grid-cols-1 gap-10 max-w-full">
           {/* 基本設定 */}
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200 overflow-hidden">
+          <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-200 overflow-hidden">
             <h2 className="font-semibold text-gray-900 mb-4 flex items-center gap-2" style={{ fontSize: '28px' }}>
               <Type className="w-6 h-6 text-blue-600" />
               基本設定
             </h2>
             
-            <div className="space-y-6 max-w-full">
+            <div className="space-y-8 max-w-full">
               {/* 跑馬燈名稱 */}
               <div className="max-w-full">
                 <label className="block font-medium text-gray-700 mb-2" style={{ fontSize: '24px' }}>
@@ -270,17 +271,14 @@ export const SettingsPage: React.FC = () => {
             </div>
           </div>
 
-          {/* 分隔線 */}
-          <div className="border-t border-gray-200 my-8"></div>
-
           {/* 顏色設定 */}
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+          <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
             <h2 className="font-semibold text-gray-900 mb-4 flex items-center gap-2" style={{ fontSize: '28px' }}>
               <Palette className="w-6 h-6 text-purple-600" />
               顏色設定
             </h2>
             
-            <div className="space-y-6">
+            <div className="space-y-8">
               <ColorPicker
                 label="文字顏色"
                 value={marqueeItem.config.textColor}
@@ -295,17 +293,14 @@ export const SettingsPage: React.FC = () => {
             </div>
           </div>
 
-          {/* 分隔線 */}
-          <div className="border-t border-gray-200 my-8"></div>
-
           {/* 動畫設定 */}
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+          <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
             <h2 className="font-semibold text-gray-900 mb-4 flex items-center gap-2" style={{ fontSize: '28px' }}>
               <Gauge className="w-6 h-6 text-green-600" />
               動畫設定
             </h2>
             
-            <div className="space-y-6">
+            <div className="space-y-8">
               {/* 滾動速度 */}
               <div className="w-full overflow-hidden">
                 <label className="block font-medium text-gray-700 mb-3" style={{ fontSize: '24px' }}>
@@ -343,7 +338,7 @@ export const SettingsPage: React.FC = () => {
                 <label className="block font-medium text-gray-700 mb-4" style={{ fontSize: '24px' }}>
                   滾動方向
                 </label>
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-4 gap-4">
                   {directionOptions.map((option) => {
                     const Icon = option.icon;
                     return (
@@ -351,11 +346,11 @@ export const SettingsPage: React.FC = () => {
                         key={option.value}
                         onClick={() => handleDirectionChange(option.value)}
                         className={cn(
-                          'relative px-3 py-3 rounded-xl shadow-md transition-all duration-200 flex flex-col items-center justify-center gap-1 font-medium text-base',
-                          'active:scale-95 active:shadow-sm transform',
+                          'relative px-4 py-4 rounded-xl shadow-lg transition-all duration-300 flex flex-col items-center justify-center gap-2 font-medium text-base',
+                          'hover:scale-105 active:scale-95 transform cursor-pointer',
                           marqueeItem.config.direction === option.value
-                            ? 'bg-gradient-to-b from-blue-500 to-blue-600 text-white shadow-blue-200 ring-2 ring-blue-300'
-                            : 'bg-gradient-to-b from-white to-gray-50 text-gray-700 border border-gray-200 hover:from-gray-50 hover:to-gray-100 hover:shadow-lg hover:border-gray-300'
+                            ? 'bg-gradient-to-b from-blue-500 to-blue-600 text-white shadow-blue-300 ring-3 ring-blue-200 border-2 border-blue-400'
+                            : 'bg-gradient-to-b from-white to-gray-50 text-gray-700 border-2 border-gray-300 hover:from-blue-50 hover:to-blue-100 hover:shadow-xl hover:border-blue-300'
                         )}
                         style={{
                           boxShadow: marqueeItem.config.direction === option.value 
@@ -376,31 +371,28 @@ export const SettingsPage: React.FC = () => {
             </div>
           </div>
 
-          {/* 分隔線 */}
-          <div className="border-t border-gray-200 my-8"></div>
-
           {/* 字體設定 */}
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+          <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
             <h2 className="font-semibold text-gray-900 mb-4 flex items-center gap-2" style={{ fontSize: '28px' }}>
               <Settings className="w-6 h-6 text-gray-600" />
               字體設定
             </h2>
             
-            <div className="space-y-6">
+            <div className="space-y-8">
               {/* 字形變化 */}
               <div>
                 <label className="block font-medium text-gray-700 mb-4" style={{ fontSize: '24px' }}>
                   字形變化
                 </label>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-3 gap-4">
                   <button
                     onClick={() => handleConfigChange({ fontWeight: 'normal', fontStyle: 'normal' })}
                     className={cn(
-                      'relative px-3 py-4 rounded-xl shadow-md transition-all duration-200 flex flex-col items-center justify-center gap-2 font-medium text-base',
-                      'active:scale-95 active:shadow-sm transform',
+                      'relative px-4 py-8 rounded-xl shadow-lg transition-all duration-300 flex flex-col items-center justify-center gap-3 font-medium text-lg',
+                      'hover:scale-105 active:scale-95 transform cursor-pointer',
                       marqueeItem.config.fontWeight === 'normal' && marqueeItem.config.fontStyle === 'normal'
-                        ? 'bg-gradient-to-b from-blue-500 to-blue-600 text-white shadow-blue-200 ring-2 ring-blue-300'
-                        : 'bg-gradient-to-b from-white to-gray-50 text-gray-700 border border-gray-200 hover:from-gray-50 hover:to-gray-100 hover:shadow-lg hover:border-gray-300'
+                        ? 'bg-gradient-to-b from-blue-500 to-blue-600 text-white shadow-blue-300 ring-3 ring-blue-200 border-2 border-blue-400'
+                        : 'bg-gradient-to-b from-white to-gray-50 text-gray-700 border-2 border-gray-300 hover:from-blue-50 hover:to-blue-100 hover:shadow-xl hover:border-blue-300'
                     )}
                     style={{
                       boxShadow: marqueeItem.config.fontWeight === 'normal' && marqueeItem.config.fontStyle === 'normal'
@@ -415,11 +407,11 @@ export const SettingsPage: React.FC = () => {
                   <button
                     onClick={() => handleConfigChange({ fontWeight: 'bold' })}
                     className={cn(
-                      'relative px-3 py-4 rounded-xl shadow-md transition-all duration-200 flex flex-col items-center justify-center gap-2 font-bold text-base',
-                      'active:scale-95 active:shadow-sm transform',
+                      'relative px-4 py-8 rounded-xl shadow-lg transition-all duration-300 flex flex-col items-center justify-center gap-3 font-bold text-lg',
+                      'hover:scale-105 active:scale-95 transform cursor-pointer',
                       marqueeItem.config.fontWeight === 'bold'
-                        ? 'bg-gradient-to-b from-blue-500 to-blue-600 text-white shadow-blue-200 ring-2 ring-blue-300'
-                        : 'bg-gradient-to-b from-white to-gray-50 text-gray-700 border border-gray-200 hover:from-gray-50 hover:to-gray-100 hover:shadow-lg hover:border-gray-300'
+                        ? 'bg-gradient-to-b from-blue-500 to-blue-600 text-white shadow-blue-300 ring-3 ring-blue-200 border-2 border-blue-400'
+                        : 'bg-gradient-to-b from-white to-gray-50 text-gray-700 border-2 border-gray-300 hover:from-blue-50 hover:to-blue-100 hover:shadow-xl hover:border-blue-300'
                     )}
                     style={{
                       boxShadow: marqueeItem.config.fontWeight === 'bold'
@@ -434,11 +426,11 @@ export const SettingsPage: React.FC = () => {
                   <button
                     onClick={() => handleConfigChange({ fontStyle: 'italic' })}
                     className={cn(
-                      'relative px-3 py-4 rounded-xl shadow-md transition-all duration-200 flex flex-col items-center justify-center gap-2 font-medium text-base italic',
-                      'active:scale-95 active:shadow-sm transform',
+                      'relative px-4 py-8 rounded-xl shadow-lg transition-all duration-300 flex flex-col items-center justify-center gap-3 font-medium text-lg italic',
+                      'hover:scale-105 active:scale-95 transform cursor-pointer',
                       marqueeItem.config.fontStyle === 'italic'
-                        ? 'bg-gradient-to-b from-blue-500 to-blue-600 text-white shadow-blue-200 ring-2 ring-blue-300'
-                        : 'bg-gradient-to-b from-white to-gray-50 text-gray-700 border border-gray-200 hover:from-gray-50 hover:to-gray-100 hover:shadow-lg hover:border-gray-300'
+                        ? 'bg-gradient-to-b from-blue-500 to-blue-600 text-white shadow-blue-300 ring-3 ring-blue-200 border-2 border-blue-400'
+                        : 'bg-gradient-to-b from-white to-gray-50 text-gray-700 border-2 border-gray-300 hover:from-blue-50 hover:to-blue-100 hover:shadow-xl hover:border-blue-300'
                     )}
                     style={{
                       boxShadow: marqueeItem.config.fontStyle === 'italic'
@@ -499,6 +491,7 @@ export const SettingsPage: React.FC = () => {
           }
         `
       }} />
+        </div>
     </div>
   );
 };
