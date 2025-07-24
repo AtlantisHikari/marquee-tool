@@ -237,6 +237,9 @@ export const SettingsPage: React.FC = () => {
                 />
               </div>
 
+              {/* 強制換行間距 */}
+              <div className="h-8"></div>
+
               {/* 字體大小 */}
               <div className="max-w-full">
                 <label className="block font-medium text-gray-700 mb-4 mt-12" style={{ fontSize: '20px' }}>
@@ -284,6 +287,9 @@ export const SettingsPage: React.FC = () => {
                 value={marqueeItem.config.textColor}
                 onChange={(color) => handleConfigChange({ textColor: color })}
               />
+              
+              {/* 強制換行間距 */}
+              <div className="h-8"></div>
               
               <ColorPicker
                 label="背景顏色"
@@ -400,7 +406,7 @@ export const SettingsPage: React.FC = () => {
                         : 'inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 6px 16px rgba(0, 0, 0, 0.15)'
                     }}
                   >
-                    <span className="text-lg font-bold">預設</span>
+                    <span className="text-sm font-bold">預設</span>
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-transparent via-transparent to-white/20 pointer-events-none" />
                   </button>
                   <button
@@ -418,7 +424,7 @@ export const SettingsPage: React.FC = () => {
                         : 'inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 6px 16px rgba(0, 0, 0, 0.15)'
                     }}
                   >
-                    <span className="text-lg font-bold">粗體</span>
+                    <span className="text-sm font-bold">粗體</span>
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-transparent via-transparent to-white/20 pointer-events-none" />
                   </button>
                   <button
@@ -436,11 +442,14 @@ export const SettingsPage: React.FC = () => {
                         : 'inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 6px 16px rgba(0, 0, 0, 0.15)'
                     }}
                   >
-                    <span className="text-lg font-bold">斜體</span>
+                    <span className="text-sm font-bold">斜體</span>
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-transparent via-transparent to-white/20 pointer-events-none" />
                   </button>
                 </div>
               </div>
+
+              {/* 強制換行間距 */}
+              <div className="h-8"></div>
 
               {/* 字體系列 */}
               <div>
