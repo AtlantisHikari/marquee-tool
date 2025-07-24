@@ -197,7 +197,7 @@ export const SettingsPage: React.FC = () => {
 
         {/* 設定面板 */}
         <div className="border-4 border-black rounded-lg" style={{ padding: '10px' }}>
-        <div className="grid grid-cols-1 gap-4 max-w-full">
+        <div className="grid grid-cols-1 gap-6 max-w-full">
           {/* 基本設定 */}
           <div className="bg-white rounded-xl shadow-lg p-8 overflow-hidden">
             <h2 className="font-semibold text-gray-900 mb-1 flex items-center gap-4" style={{ fontSize: '32px' }}>
@@ -205,10 +205,10 @@ export const SettingsPage: React.FC = () => {
               基本設定
             </h2>
             
-            <div className="space-y-6 max-w-full">
+            <div className="space-y-8 max-w-full">
               {/* 跑馬燈名稱 */}
               <div className="max-w-full">
-                <label className="block font-medium text-gray-700 mb-2 mt-6" style={{ fontSize: '20px' }}>
+                <label className="block font-medium text-gray-700 mb-3 mt-8" style={{ fontSize: '20px' }}>
                   跑馬燈名稱
                 </label>
                 <input
@@ -224,7 +224,7 @@ export const SettingsPage: React.FC = () => {
 
               {/* 文字內容 */}
               <div className="max-w-full">
-                <label className="block font-medium text-gray-700 mb-2 mt-6" style={{ fontSize: '20px' }}>
+                <label className="block font-medium text-gray-700 mb-3 mt-8" style={{ fontSize: '20px' }}>
                   文字內容
                 </label>
                 <textarea
@@ -239,7 +239,7 @@ export const SettingsPage: React.FC = () => {
 
               {/* 字體大小 */}
               <div className="max-w-full">
-                <label className="block font-medium text-gray-700 mb-2 mt-6" style={{ fontSize: '20px' }}>
+                <label className="block font-medium text-gray-700 mb-3 mt-8" style={{ fontSize: '20px' }}>
                   字體大小: {marqueeItem.config.fontSize}px
                 </label>
                 <div className="px-4 w-full max-w-full">
@@ -278,7 +278,7 @@ export const SettingsPage: React.FC = () => {
               顏色設定
             </h2>
             
-            <div className="space-y-6">
+            <div className="space-y-8">
               <ColorPicker
                 label="文字顏色"
                 value={marqueeItem.config.textColor}
@@ -300,10 +300,10 @@ export const SettingsPage: React.FC = () => {
               動畫設定
             </h2>
             
-            <div className="space-y-6">
+            <div className="space-y-8">
               {/* 滾動速度 */}
               <div className="w-full overflow-hidden">
-                <label className="block font-medium text-gray-700 mb-2 mt-6" style={{ fontSize: '20px' }}>
+                <label className="block font-medium text-gray-700 mb-3 mt-8" style={{ fontSize: '20px' }}>
                   滾動速度: {marqueeItem.config.speed}
                 </label>
                 <div className="px-6 w-full">
@@ -335,7 +335,7 @@ export const SettingsPage: React.FC = () => {
 
               {/* 滾動方向 */}
               <div>
-                <label className="block font-medium text-gray-700 mb-2 mt-6" style={{ fontSize: '20px' }}>
+                <label className="block font-medium text-gray-700 mb-3 mt-8" style={{ fontSize: '20px' }}>
                   滾動方向
                 </label>
                 <div className="grid grid-cols-4 gap-6">
@@ -378,10 +378,10 @@ export const SettingsPage: React.FC = () => {
               字體設定
             </h2>
             
-            <div className="space-y-6">
+            <div className="space-y-8">
               {/* 字形變化 */}
               <div>
-                <label className="block font-medium text-gray-700 mb-2 mt-6" style={{ fontSize: '20px' }}>
+                <label className="block font-medium text-gray-700 mb-3 mt-8" style={{ fontSize: '20px' }}>
                   字形變化
                 </label>
                 <div className="grid grid-cols-3 gap-6">
@@ -400,7 +400,7 @@ export const SettingsPage: React.FC = () => {
                         : 'inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 6px 16px rgba(0, 0, 0, 0.15)'
                     }}
                   >
-                    <span className="text-4xl font-bold">預設</span>
+                    <span className="text-sm font-bold">預設</span>
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-transparent via-transparent to-white/20 pointer-events-none" />
                   </button>
                   <button
@@ -418,7 +418,7 @@ export const SettingsPage: React.FC = () => {
                         : 'inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 6px 16px rgba(0, 0, 0, 0.15)'
                     }}
                   >
-                    <span className="text-4xl font-bold">粗體</span>
+                    <span className="text-sm font-bold">粗體</span>
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-transparent via-transparent to-white/20 pointer-events-none" />
                   </button>
                   <button
@@ -436,7 +436,7 @@ export const SettingsPage: React.FC = () => {
                         : 'inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 6px 16px rgba(0, 0, 0, 0.15)'
                     }}
                   >
-                    <span className="text-4xl font-bold">斜體</span>
+                    <span className="text-sm font-bold">斜體</span>
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-transparent via-transparent to-white/20 pointer-events-none" />
                   </button>
                 </div>
@@ -444,7 +444,7 @@ export const SettingsPage: React.FC = () => {
 
               {/* 字體系列 */}
               <div>
-                <label className="block font-medium text-gray-700 mb-2 mt-6" style={{ fontSize: '20px' }}>
+                <label className="block font-medium text-gray-700 mb-3 mt-8" style={{ fontSize: '20px' }}>
                   字體系列
                 </label>
                 <select
