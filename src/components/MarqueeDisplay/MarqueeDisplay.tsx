@@ -56,6 +56,8 @@ export const MarqueeDisplay: React.FC<MarqueeDisplayProps> = ({
     backgroundColor: config.backgroundColor,
     width: '100%',
     height: '100%',
+    minWidth: '100vw',
+    minHeight: '100vh',
     position: 'relative',
     overflow: 'hidden',
   };
@@ -85,7 +87,11 @@ export const MarqueeDisplay: React.FC<MarqueeDisplayProps> = ({
       )}
       style={{
         ...containerStyles,
-        position: 'relative',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
         display: 'flex',
         alignItems: 'center',
         justifyContent: config.direction === 'up' || config.direction === 'down' ? 'center' : 'flex-start',

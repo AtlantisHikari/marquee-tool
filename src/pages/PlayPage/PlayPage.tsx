@@ -116,7 +116,7 @@ export const PlayPage: React.FC = () => {
 
   return (
     <div 
-      className="fixed inset-0 bg-black"
+      className="fixed inset-0"
       style={{
         width: '100vw',
         height: '100vh',
@@ -124,6 +124,7 @@ export const PlayPage: React.FC = () => {
         top: 0,
         left: 0,
         zIndex: 9999,
+        backgroundColor: marqueeItem.config.backgroundColor,
       }}
     >
       {/* 控制列 - 絕對定位在右上角 */}
